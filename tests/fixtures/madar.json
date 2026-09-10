@@ -1,11 +1,11 @@
 {
-  "id": "283d9999-ba1d-4517-a28f-e3c309c14b26",
+  "id": "demo-madar",
   "name": "Madar loop vase — Demo",
   "short_description": "A Banafsaj demonstration design for testing product options, interactive 3D and native cart. Demo inventory only. The model is a design concept, not manufacturing specifications. Do not complete a real order.",
   "has_fields": false,
   "options": [
     {
-      "id": "2a82c9d1-d077-4283-9b38-f5218232b093",
+      "id": "demo-color",
       "name": "Colors",
       "choices": [
         "Sand",
@@ -15,7 +15,7 @@
   ],
   "variants": [
     {
-      "id": "8c5f61b2-476d-444d-b8d4-6d7a8f730ff0",
+      "id": "demo-madar-sand",
       "name": "Madar loop vase — Demo / Sand",
       "formatted_price": " SAR 129.00",
       "formatted_sale_price": null,
@@ -23,43 +23,34 @@
       "quantity": null,
       "attributes": [
         {
-          "id": "ec0b14d4-7a08-494c-9650-3196b2ada191",
+          "id": "demo-attribute-sand",
           "slug": "الألوان",
           "name": "Colors",
           "value": "Sand",
           "type": "default",
           "type_value": null,
-          "product_id": "8c5f61b2-476d-444d-b8d4-6d7a8f730ff0",
+          "product_id": "demo-madar-sand",
           "attribute_image_id": null,
           "display_order": null,
-          "attribute_id": "2a82c9d1-d077-4283-9b38-f5218232b093",
+          "attribute_id": "demo-color",
           "attribute_display_order": null,
           "use_as_filter": false
         }
       ],
       "images": [
         {
-          "id": "3222ce5b-e41a-4004-8ccd-fdcd802076cf",
+          "id": "demo-image-sand",
           "image": {
-            "full_size": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=1000,height=1000/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/3222ce5b-e41a-4004-8ccd-fdcd802076cf.png",
-            "medium": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=770,height=770/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/3222ce5b-e41a-4004-8ccd-fdcd802076cf.png"
+            "full_size": "/examples/madar/images/sand.png",
+            "medium": "/examples/madar/images/sand.png"
           },
           "alt_text": "Madar / sand — demo design / تصميم تجريبي",
           "display_order": 1
-        },
-        {
-          "id": "e62bf6be-8f7b-46c6-8599-5797d283ab88",
-          "image": {
-            "full_size": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=1000,height=1000/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/e62bf6be-8f7b-46c6-8599-5797d283ab88.jpg",
-            "medium": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=770,height=770/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/e62bf6be-8f7b-46c6-8599-5797d283ab88.jpg"
-          },
-          "alt_text": null,
-          "display_order": 2
         }
       ]
     },
     {
-      "id": "42f6cef9-4a29-4d85-8e5d-ecf231cd6031",
+      "id": "demo-madar-lavender",
       "name": "Madar loop vase — Demo / Lavender",
       "formatted_price": " SAR 129.00",
       "formatted_sale_price": null,
@@ -67,48 +58,39 @@
       "quantity": null,
       "attributes": [
         {
-          "id": "acaff50d-52b5-4647-a641-59840baa5bf0",
+          "id": "demo-attribute-lavender",
           "slug": "الألوان",
           "name": "Colors",
           "value": "Lavender",
           "type": "default",
           "type_value": null,
-          "product_id": "42f6cef9-4a29-4d85-8e5d-ecf231cd6031",
+          "product_id": "demo-madar-lavender",
           "attribute_image_id": null,
           "display_order": null,
-          "attribute_id": "2a82c9d1-d077-4283-9b38-f5218232b093",
+          "attribute_id": "demo-color",
           "attribute_display_order": null,
           "use_as_filter": false
         }
       ],
       "images": [
         {
-          "id": "873840e0-22f8-4332-9f8e-8e0160cfe4c4",
+          "id": "demo-image-lavender",
           "image": {
-            "full_size": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=1000,height=1000/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/873840e0-22f8-4332-9f8e-8e0160cfe4c4.png",
-            "medium": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=770,height=770/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/873840e0-22f8-4332-9f8e-8e0160cfe4c4.png"
+            "full_size": "/examples/madar/images/lavender.png",
+            "medium": "/examples/madar/images/lavender.png"
           },
           "alt_text": "Madar / lavender — demo design / تصميم تجريبي",
           "display_order": 1
-        },
-        {
-          "id": "1596c01a-d140-4a07-94bc-b0a6226d685c",
-          "image": {
-            "full_size": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=1000,height=1000/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/1596c01a-d140-4a07-94bc-b0a6226d685c.jpg",
-            "medium": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=770,height=770/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/1596c01a-d140-4a07-94bc-b0a6226d685c.jpg"
-          },
-          "alt_text": null,
-          "display_order": 2
         }
       ]
     }
   ],
   "images": [
     {
-      "id": "13259607-e699-4e69-87cd-01098575acdf",
+      "id": "demo-image-lavender",
       "image": {
-        "full_size": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/13259607-e699-4e69-87cd-01098575acdf.png",
-        "medium": "https://media.zid.store/cdn-cgi/image/fit=scale-down,width=770,height=770/https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/13259607-e699-4e69-87cd-01098575acdf.png"
+        "full_size": "/examples/madar/images/lavender.png",
+        "medium": "/examples/madar/images/lavender.png"
       },
       "alt_text": "Madar / lavender — demo design / تصميم تجريبي",
       "display_order": 1

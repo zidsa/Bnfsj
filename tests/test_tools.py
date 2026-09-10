@@ -40,17 +40,41 @@ def test_built_package_validates_and_renders() -> None:
     assert report.assets
 
 
-def test_render_uses_captured_product_and_preset(tmp_path: Path) -> None:
+def test_render_uses_sample_product_and_preset(tmp_path: Path) -> None:
     html = tmp_path / "landing.html"
     report = validate(ROOT, FIXTURE, html)
     assert report.ok, report.errors
     rendered = html.read_text(encoding="utf-8")
     assert "Madar loop vase" in rendered
-    assert "3222ce5b-e41a-4004-8ccd-fdcd802076cf.png" in rendered
+    assert "/examples/madar/images/sand.png" in rendered
     assert "section-id=\"3a16255e-2067-501f-99b6-1d6c22b790dd\"" in rendered
     assert "<!-- platform: vitrin_head -->" in rendered
     assert "<!-- platform: vitrin_body -->" in rendered
     assert "\x01" not in rendered
+
+
+def test_render_accepts_an_unrelated_product_without_variants(tmp_path: Path) -> None:
+    fixture = tmp_path / "simple-product.json"
+    fixture.write_text(json.dumps({
+        "id": "sample-notebook",
+        "name": "Plain notebook",
+        "short_description": "An independent sample product.",
+        "formatted_price": "SAR 25.00",
+        "is_infinite": False,
+        "quantity": 7,
+        "images": [],
+        "options": [],
+        "variants": [],
+    }), encoding="utf-8")
+    for language in ("ar", "en"):
+        output = tmp_path / f"simple-{language}.html"
+        report = validate(ROOT, fixture, output, language=language)
+        assert report.ok, report.errors
+        rendered = output.read_text(encoding="utf-8")
+        assert "Plain notebook" in rendered
+        assert 'id="product-id" type="hidden" value="sample-notebook"' in rendered
+        assert "SAR 25.00" in rendered
+        assert "Madar" not in rendered
 
 
 def test_validator_rejects_unsafe_paths_and_missing_assets(tmp_path: Path) -> None:

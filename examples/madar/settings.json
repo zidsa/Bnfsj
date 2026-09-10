@@ -77,11 +77,11 @@
               "gallery": [
                 {
                   "url": "#product-form",
-                  "image": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/3222ce5b-e41a-4004-8ccd-fdcd802076cf.png"
+                  "image": "/examples/madar/images/sand.png"
                 },
                 {
                   "url": "#product-form",
-                  "image": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/873840e0-22f8-4332-9f8e-8e0160cfe4c4.png"
+                  "image": "/examples/madar/images/lavender.png"
                 }
               ]
             },
@@ -94,7 +94,7 @@
             "settings": {
               "features": [
                 {
-                  "image": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/873840e0-22f8-4332-9f8e-8e0160cfe4c4.png",
+                  "image": "/examples/madar/images/lavender.png",
                   "title": "تفاصيل بسيطة، شخصية مختلفة.",
                   "description": "<p>خطوط مستديرة ومساحة مفتوحة في المنتصف تمنح مدار شكله المميز. اختر الرملي الهادئ أو اللافندر، وشاهد اللون الذي ينسجم مع ذوقك.</p><p class=\"bnfsj-note\">صور لتصميم تجريبي؛ وليست مواصفات تصنيع.</p>"
                 }
@@ -205,11 +205,11 @@
               "gallery": [
                 {
                   "url": "#product-form",
-                  "image": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/3222ce5b-e41a-4004-8ccd-fdcd802076cf.png"
+                  "image": "/examples/madar/images/sand.png"
                 },
                 {
                   "url": "#product-form",
-                  "image": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/873840e0-22f8-4332-9f8e-8e0160cfe4c4.png"
+                  "image": "/examples/madar/images/lavender.png"
                 }
               ]
             },
@@ -222,7 +222,7 @@
             "settings": {
               "features": [
                 {
-                  "image": "https://zid-testing-907587157081.s3.eu-west-1.amazonaws.com/52e981e7-7f49-441e-87ee-f4512bcf7121/873840e0-22f8-4332-9f8e-8e0160cfe4c4.png",
+                  "image": "/examples/madar/images/lavender.png",
                   "title": "Simple details. Distinct character.",
                   "description": "<p>Rounded lines and an open center give Madar its distinctive shape. Explore calm Sand or Lavender and choose the color that feels like you.</p><p class=\"bnfsj-note\">Images show a demonstration design, not manufacturing specifications.</p>"
                 }

@@ -313,7 +313,7 @@ def _wrap(value: Any) -> Any:
 
 
 def _product_fixture(fixture_path: Path | None, report: Report) -> _Object:
-    """Load a captured product response, adding the fields Vitrin derives."""
+    """Load sample product data, adding the fields Vitrin derives."""
     raw: dict[str, Any] = {}
     if fixture_path and fixture_path.is_file():
         try:
@@ -340,7 +340,7 @@ def _product_fixture(fixture_path: Path | None, report: Report) -> _Object:
         raw["selected_product"] = selected
         raw["has_variants"] = True
     elif "selected_product" not in raw:
-        raw["selected_product"] = raw
+        raw["selected_product"] = dict(raw)
     raw.setdefault("has_variants", bool(variants))
     custom_fields = raw.get("custom_user_input_fields") or raw.get("custom_option_fields")
     raw.setdefault("has_fields", bool(custom_fields))
@@ -508,7 +508,7 @@ def validate(path: Path, fixture_path: Path | None = DEFAULT_FIXTURE, html_outpu
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("package", nargs="?", type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE, help="captured product JSON used for render validation")
+    parser.add_argument("--fixture", type=Path, default=DEFAULT_FIXTURE, help="sample product JSON used for render validation")
     parser.add_argument("--html-output", type=Path, default=None, help="write rendered landing HTML for local visual inspection")
     parser.add_argument("--preset", type=Path, default=None, help="preset JSON used to expand local template_components")
     parser.add_argument("--language", choices=("ar", "en"), default="ar", help="locale used for render validation")

@@ -2,7 +2,7 @@
 """Compare the native package with the checked-in Twig sample locally.
 
 This is deliberately offline.  It checks the byte-for-byte asset migration and
-section inventory, then renders both templates with the captured Madar product
+section inventory, then renders both templates with the sample product
 fixture so the resulting files can be opened side by side.
 """
 
@@ -137,18 +137,25 @@ def compare(native: Path, baseline: Path, fixture: Path, native_html: Path, twig
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--native", type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument("--baseline", type=Path, default=Path(__file__).resolve().parents[2] / "custom-landing-page-sample")
+    parser.add_argument("--baseline", type=Path, required=True, help="original Twig sample directory")
     parser.add_argument("--fixture", type=Path, default=Path(__file__).resolve().parents[1] / "tests" / "fixtures" / "madar.json")
     parser.add_argument(
         "--twig-autoload",
         type=Path,
-        default=Path("/home/muath/dev/zid/catalog/vendor/autoload.php"),
+        default=None,
         help="Twig Composer autoload.php path (or set BNFSJ_TWIG_AUTOLOAD)",
     )
     parser.add_argument("--native-html", type=Path, default=Path("/tmp/bnfsj-native.html"))
     parser.add_argument("--twig-html", type=Path, default=Path("/tmp/bnfsj-twig.html"))
     args = parser.parse_args()
-    autoload = Path(os.environ.get("BNFSJ_TWIG_AUTOLOAD", str(args.twig_autoload)))
+    autoload_value = args.twig_autoload or os.environ.get("BNFSJ_TWIG_AUTOLOAD")
+    if not autoload_value:
+        parser.error("provide --twig-autoload or set BNFSJ_TWIG_AUTOLOAD")
+    autoload = Path(autoload_value)
+    if not args.baseline.is_dir():
+        parser.error("--baseline must be an existing Twig sample directory")
+    if not autoload.is_file():
+        parser.error("Twig autoload.php must be an existing file")
     result = compare(args.native, args.baseline, args.fixture, args.native_html, args.twig_html, autoload)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["native_valid"] and result["asset_sha256_equal"] and result["section_stems_equal"] and result["twig_render"]["ok"] else 1
