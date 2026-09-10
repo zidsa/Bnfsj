@@ -1,0 +1,36 @@
+{
+  "section_id": "uuid",
+  "template": "sections/header.jinja",
+  "name": {
+    "ar": "اعلى الصفحة",
+    "en": "Header"
+  },
+  "icon": "fa fa-square",
+  "display": true,
+  "settings": [
+    {
+      "id": "header_logo",
+      "type": "image",
+      "label": {
+        "ar": "شعار سطح المكتب",
+        "en": "Desktop logo"
+      },
+      "info": {
+        "ar": "اتركه فارغاً لاستخدام شعار المتجر",
+        "en": "Leave empty to use the store logo"
+      }
+    },
+    {
+      "id": "header_logo_mobile",
+      "type": "image",
+      "label": {
+        "ar": "شعار الجوال",
+        "en": "Mobile logo"
+      },
+      "info": {
+        "ar": "اتركه فارغاً لاستخدام شعار سطح المكتب",
+        "en": "Leave empty to use the desktop logo"
+      }
+    }
+  ]
+}

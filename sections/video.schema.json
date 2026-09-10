@@ -1,0 +1,48 @@
+{
+  "section_id": "uuid",
+  "template": "sections/video.jinja",
+  "name": {
+    "ar": "فيديو",
+    "en": "Video"
+  },
+  "icon": "fa fa-play",
+  "display": true,
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "text"
+      }
+    },
+    {
+      "id": "video",
+      "type": "video",
+      "label": {
+        "ar": "الفيديو",
+        "en": "Video"
+      },
+      "info": {
+        "ar": "mp4 اقصى حجم 10MB",
+        "en": ""
+      }
+    },
+    {
+      "id": "controls",
+      "type": "checkbox",
+      "label": {
+        "ar": "عرض ازرار التحكم",
+        "en": "Controls"
+      }
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": {
+        "ar": "تشغيل الفيديو  بشكل مباشر",
+        "en": "autoplay"
+      }
+    }
+  ]
+}

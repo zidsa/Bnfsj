@@ -1,0 +1,4 @@
+<header section-id="{{ sectionId }}" class="hero bnfsj-section bnfsj-banner">
+		{% if settings.image %}<img src="{{ image_url(settings.image, w=2220, q=90, f='auto') }}" alt="{{ settings.description | default(settings.title, true) }}" class="hero-image">{% endif %}
+    {% if settings.title %}<h2 class="title bnfsj-heading">{{ settings.title }}</h2>{% endif %}
+</header>

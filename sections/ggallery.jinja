@@ -1,0 +1,35 @@
+<section section-id="{{ sectionId }}"
+     data-lg-scroll-offset="130"
+     data-md-scroll-offset="130"
+     data-sm-scroll-offset="94"
+     class="gallery-section container section-padding-space bnfsj-section bnfsj-gallery bnfsj-container">
+    {% if settings.title %}
+      <h2 class="section-title p-0 theme-text-primary bnfsj-heading">{{ settings.title }}</h2>
+    {% endif %}
+    <div class="gallery row" data-image-fit="{{ settings.image_fit | default('contain', true) }}">
+        {% for galler in settings.gallery or [] %}
+        {% if galler.image %}<div class="gallery-item col-6 {% if (loop.index0 == 2) or (loop.index0 == 3) %} bottom-row {% endif %}">
+          <div class="box-1-1">
+            <div class="content">
+              <a href="{{ galler.url | default('#', true) }}" class="bnfsj-gallery-link" aria-label="{{ galler.alt | default(_('View image'), true) }}">
+                <img class="bnfsj-gallery-image"
+                     srcset="
+                             {{ image_url(galler.image, w=400, q=100, f='auto') }} 200w,
+                             {{ image_url(galler.image, w=640, q=100, f='auto') }} 320w,
+                             {{ image_url(galler.image, w=750, q=100, f='auto') }} 375w,
+                             {{ image_url(galler.image, w=960, q=100, f='auto') }} 480w,
+                             {{ image_url(galler.image, w=1700, q=100, f='auto') }} 850w,
+                            "
+                     sizes="calc(50vw - 30px)"
+                     src="{{ image_url(galler.image, w=1700, q=100, f='auto') }}"
+                     {% if loop.index0 != 0 %}
+                     loading="lazy"
+                     {% endif %}
+                     alt="{{ galler.alt | default(settings.title, true) }}">
+              </a>
+            </div>
+          </div>
+        </div>{% endif %}
+        {% endfor %}
+    </div>
+</section>

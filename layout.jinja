@@ -1,0 +1,70 @@
+{% set font_name = settings.font_family | default(settings.fonts_name | default('IBM+Plex+Sans+Arabic', true), true) %}
+{% set primary_color = settings.theme_primary | default(safeget(store, 'settings.branding.colors.primary', '#3C1C54'), true) %}
+{% set primary_text_color = settings.theme_primary_foreground | default(safeget(store, 'settings.branding.colors.text_of_primary_bg', '#FFFFFF'), true) %}
+<!doctype html>
+<html class="no-js" lang="{{ session.lang }}" dir="{{ session.locale.language.direction }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% vitrin_head %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family={{ font_name }}:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bnfsj-primary: {{ primary_color }};
+        --bnfsj-on-primary: {{ primary_text_color }};
+        --bnfsj-background: {{ settings.theme_background | default('#FFFFFF', true) }};
+        --bnfsj-foreground: {{ settings.theme_foreground | default('#1F0433', true) }};
+        --bnfsj-surface: {{ settings.theme_surface | default('#F5F4F6', true) }};
+        --bnfsj-border: {{ settings.theme_border | default('#E8E4EB', true) }};
+        --bnfsj-muted: {{ settings.theme_muted | default('#6B6173', true) }};
+        --bnfsj-radius: {{ settings.theme_radius if settings.theme_radius is number else 12 }}px;
+        --bnfsj-width: {{ settings.layout_width | default(1140, true) | int }}px;
+        --bnfsj-space: {{ settings.layout_spacing | default(48, true) | int }}px;
+        --bnfsj-font: '{{ font_name | replace('+', ' ') }}', sans-serif;
+        /* Compatibility names consumed by native widgets and existing merchant CSS. */
+        --primary-color: var(--bnfsj-primary);
+        --text-color-primary-bg: var(--bnfsj-on-primary);
+        --primary-color-op-5: var(--bnfsj-surface);
+        --sub-primary-color: var(--bnfsj-foreground);
+      }
+      @font-face {
+        font-family: 'icomoon';
+        src: url('{{ 'icomoon.eot?d668y32' | asset_url }}');
+        src: url('{{ 'icomoon.eot?d668y32' | asset_url }}#iefix') format('embedded-opentype'),
+          url('{{ 'icomoon.woff2?d668y32' | asset_url }}') format('woff2'),
+          url('{{ 'icomoon.ttf?d668y32' | asset_url }}') format('truetype'),
+          url('{{ 'icomoon.woff?d668y32' | asset_url }}') format('woff'),
+          url('{{ 'icomoon.svg?d668y32' | asset_url }}#icomoon') format('svg');
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+      }
+    </style>
+    <link rel="stylesheet" href="{{ 'icomoon.css' | asset_url }}">
+    {% if session.locale.language.direction == 'rtl' %}
+      <link rel="stylesheet" href="{{ 'bootstrap-rtl.css' | asset_url }}">
+    {% else %}
+      <link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}">
+    {% endif %}
+    <link rel="stylesheet" href="{{ 'slick.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'bnfsj.css?v=1.1.1' | asset_url }}">
+    {% if user_custom_css %}<link rel="stylesheet" href="{{ user_custom_css }}">{% endif %}
+    {% set custom_css = settings.custom_css | default(settings.general_settings_css, true) %}
+    {% if custom_css %}<style>{{ custom_css | safe }}</style>{% endif %}
+  </head>
+  <body data-bnfsj-version="1.1.1" data-bnfsj-next="{{ _('Next') }}" data-bnfsj-previous="{{ _('Previous') }}" class="bnfsj purple-landing-page {{ 'rtl' if session.lang == 'ar' else 'ltr' }}" data-template="{{ session.template }}">
+    <main id="main" class="bnfsj-main main app-content">
+      {% block content %}{% endblock %}
+    </main>
+    <script src="{{ 'jquery-3.6.0.min.js?v=1.0.0' | asset_url }}"></script>
+    <script src="{{ 'popper.min.js?v=1.0' | asset_url }}"></script>
+    <script src="{{ 'bootstrap.min.js' | asset_url }}"></script>
+    <script src="{{ 'slick.min.js' | asset_url }}"></script>
+    {% vitrin_body %}
+    <script defer src="{{ 'bnfsj-sections.js?v=1.1.1' | asset_url }}"></script>
+    {% block footer_scripts %}{% endblock %}
+  </body>
+</html>

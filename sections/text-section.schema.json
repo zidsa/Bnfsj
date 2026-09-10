@@ -1,0 +1,20 @@
+{
+  "section_id": "uuid",
+  "template": "sections/text-section.jinja",
+  "name": {
+    "ar": "نص",
+    "en": "Text"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "description",
+      "type": "text",
+      "label": {
+        "ar": "النص",
+        "en": "Text"
+      }
+    }
+  ]
+}

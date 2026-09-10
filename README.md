@@ -1,0 +1,97 @@
+# Bnfsj
+
+A reusable native Vitrin product landing theme. Each page selects one product and
+has its own settings profile. Madar and Nawa demonstrate two pages using the same
+templates, styles, and purchase flow.
+
+## Design and composition
+
+`layout.schema.json` exposes typography, semantic colors, content width, section
+spacing, and corner radius in the merchant editor. Grouped keys such as
+`theme_primary` become `--bnfsj-primary` CSS variables in `layout.jinja`.
+`assets/bnfsj.css` owns the shared design. Sections inherit those defaults and can
+use their existing section color settings as overrides. Royal `#3C1C54` is the
+default primary color; page profiles can choose another palette.
+
+All 18 section template paths and existing section setting keys are preserved.
+Marketing sections may be reordered, hidden, or repeated with arbitrary section
+IDs. The native landing-page contract supports one product section per page.
+`templates/landing.jinja` composes the native `template_components` and shared
+purchase bar. Product markup is split into focused includes in `components/`.
+The Madar example contains ten sections and content/settings only; it does not
+need page-specific CSS or selectors tied to its IDs.
+
+`assets/bnfsj-sections.js` initializes carousels and countdowns within each section,
+handles sections inserted or removed by the editor, and cleans up timers. It
+exposes `window.BnfsjSections.initialize(root)` and `.destroy(root)`; repeated
+initialization is safe. Reduced-motion preferences disable carousel autoplay.
+
+## Product behavior
+
+`src/product-entry.js` composes reusable ES modules in `src/product/`. The build
+bundles them into `assets/bnfsj-product.js`, a single classic browser script that
+works with Vitrin’s cross-origin asset CDN. `product-runtime.js` coordinates selection, quantity,
+gallery, cart, and stock-alert modules. The public initializer accepts injected
+SDK/global/control roots for isolated tests and has a matching `destroy()`.
+
+Selection waits for the latest option/custom-field request, ignores stale
+responses, and prevents checkout after a failed lookup. Quantity follows finite
+variant inventory with the platform's 100-item cap. Cart operations have a shared
+submission lock. The existing native globals and form selectors are retained for
+Vitrin custom-field and checkout integration. Native Apple Pay and custom-field
+markup remain platform partials.
+
+Variant controls and gallery navigation use native buttons, accessible labels,
+visible focus styles, and locale-aware direction. Countdown instances use scoped
+data attributes rather than shared element IDs.
+
+## Compatibility
+
+The original 98 sample assets remain byte-for-byte in the package. Active styles
+use the shared theme layer plus Bootstrap, Slick, and the existing icon font;
+legacy theme CSS is retained as source material but is no longer loaded.
+Existing `fonts_name` and `general_settings_css` values remain supported as
+fallbacks for older profiles. New profiles use `font_family` and `custom_css`.
+Custom CSS is loaded after the shared layer. Avoid page-ID selectors when adding
+new features: put reusable presentation in the shared CSS and expose content or
+real merchant choices through the adjacent section schema.
+
+## Local validation
+
+Use Python 3.11+ and Node 20+:
+
+```sh
+python3 -m pip install 'Jinja2>=3.1,<4' 'pytest>=8,<10'
+npm ci --ignore-scripts
+python3 -m pytest tests -q
+npm test
+python3 scripts/validate.py --language ar
+python3 scripts/validate.py --language en
+python3 scripts/build.py --output dist/bnfsj.zip --manifest dist/assets-manifest.json
+python3 scripts/validate.py dist/bnfsj.zip
+```
+
+The package builder compiles the browser bundle with pinned esbuild, then creates
+a deterministic ZIP while preserving authored templates and styles. Validation
+checks paths, schemas, asset references, and real Jinja component
+composition. Tests cover every section in Arabic/English, repeated countdowns,
+hidden/reordered sections, missing images, independent colors, runtime cleanup,
+finite inventory, concurrent selections, and failed cart/selection requests, and the exact bundled browser entry.
+The checked-in product fixture contains no customer or credential data.
+
+For a visual preview, use `--html-output /tmp/bnfsj.html`. An optional `--preset`
+accepts a JSON object with a `presets` array, matching `preset.json`; wrap the
+Madar settings array in that object to preview the example. Platform partials are explicit local stubs;
+SDK, localization, editor persistence, and checkout still need testing on Vitrin.
+
+## Publication
+
+Create a theme version with `keep_using_latest: false`, upload the deterministic
+ZIP using its returned presigned form, attach the returned artifact key, and use
+the normal approved-theme publication workflow. Keep the existing theme,
+installation, preset, page, and profile IDs. Update and publish each page's
+settings through its own `setting_profile_id`; do not activate a global theme.
+
+Credentials are supplied only at execution time. See [QA.md](QA.md) for the
+release verification record and [examples/madar/README.md](examples/madar/README.md)
+for the ten-section example.

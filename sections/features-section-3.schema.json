@@ -1,0 +1,55 @@
+{
+  "section_id": "uuid",
+  "template": "sections/features-section-3.jinja",
+  "name": {
+    "ar": "3 خصائص المنتج",
+    "en": "Features 3"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "features",
+      "type": "list",
+      "max_items": 10,
+      "info": {
+        "ar": "",
+        "en": ""
+      },
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "Title"
+          }
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": {
+            "ar": "الوصف",
+            "en": "Description"
+          }
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Image"
+          },
+          "info": {
+            "ar": "ارفع صورة بحجم ٢٠٠ *٢٠٠ ",
+            "en": "This is an info text sample here"
+          }
+        }
+      ],
+      "label": {
+        "ar": "الصورة",
+        "en": "Picture"
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "section_id": "uuid",
+  "template": "sections/count-down-timer.jinja",
+  "name": {
+    "ar": "العد التنازلي",
+    "en": "Countdown timer"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "title"
+      }
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": {
+        "ar": "العنوان",
+        "en": "description"
+      }
+    },
+    {
+      "id": "date",
+      "type": "text",
+      "label": {
+        "ar": "تاريخ الانتهاء",
+        "en": "Date"
+      },
+      "info": {
+        "ar": "مثال: 2024-12-25 16:10:05",
+        "en": "example: 2024-12-25 16:10:05"
+      }
+    },
+    {
+      "id": "color",
+      "type": "color",
+      "label": {
+        "ar": "لون النص",
+        "en": "Color"
+      }
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": {
+        "ar": "لون الخلفية",
+        "en": "Background Color"
+      }
+    },
+    {
+      "id": "sales_end_description",
+      "type": "textarea",
+      "label": {
+        "ar": "نص انتهاء العرض",
+        "en": "Sales end text"
+      }
+    }
+  ]
+}

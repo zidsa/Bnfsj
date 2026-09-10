@@ -1,0 +1,31 @@
+<section section-id="{{ sectionId }}" class="ss bnfsj-section bnfsj-main-slider">
+  <div class="container container-slider bnfsj-container">
+    <div class="main-slider slider s-slider" data-bnfsj-carousel="main" data-hide-dots="{{ 'true' if settings.hide_dots else 'false' }}">
+      {% for slide in settings.slider or [] %}
+        <div class="slider-item">
+          <div class="box-1-1 ratio21_9">
+            <div class="content">
+              <a href="{% if slide.url %}{{ slide.url }}{% else %}/{% endif %}" class="d-flex flex-column justify-content-start bnfsj-slide-link"{% if settings.background_color %} style="--section-background: {{ settings.background_color }}"{% endif %}>
+                {% if slide.image %}
+                  <img class="d-block w-100 slider-image-{{ loop.index0 }} bnfsj-slide-image"
+                    {% if loop.index0 == 0 %}
+                      srcset="{{ image_url(slide.image, w=620, q=100, f='auto') }} 320w, {{ image_url(slide.image, w=960, q=100, f='auto') }} 480w, {{ image_url(slide.image, w=1280, q=100, f='auto') }} 640w, {{ image_url(slide.image, w=1920, q=100, f='auto') }} 960w, {{ image_url(slide.image, w=2220, q=100, f='auto') }} 1110w"
+                      src="{{ image_url(slide.image, w=2220, q=100, f='auto') }}"
+                    {% else %}
+                      data-srcset="{{ image_url(slide.image, w=620, q=100, f='auto') }} 320w, {{ image_url(slide.image, w=960, q=100, f='auto') }} 480w, {{ image_url(slide.image, w=1280, q=100, f='auto') }} 640w, {{ image_url(slide.image, w=1920, q=100, f='auto') }} 960w, {{ image_url(slide.image, w=2220, q=100, f='auto') }} 1110w"
+                      data-src="{{ image_url(slide.image, w=2220, q=100, f='auto') }}"
+                    {% endif %}
+                    sizes="(max-width: 1110px) 100vw, 1110px" alt="{{ slide.title }}">
+                {% endif %}
+                <div class="d-flex flex-column align-items-center justify-content-center bnfsj-slide-copy"{% if settings.text_color %} style="--section-color: {{ settings.text_color }}"{% endif %}>
+                  <h2 class="bnfsj-slide-title">{{ slide.title }}</h2>
+                  <p class="bnfsj-slide-description">{{ slide.des }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

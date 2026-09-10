@@ -1,0 +1,48 @@
+{
+  "section_id": "uuid",
+  "template": "sections/banner.jinja",
+  "name": {
+    "ar": "صورة كبيرة",
+    "en": "Banner"
+  },
+  "icon": "fal fa-rectangle-wide",
+  "display": true,
+  "settings": [
+    {
+      "id": "image",
+      "type": "image",
+      "label": {
+        "ar": "الصورة",
+        "en": "Image"
+      },
+      "info": {
+        "ar": "ارفع صورة بحجم 1400 * 600",
+        "en": "Upload image size 600 * 1400"
+      }
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "Title"
+      }
+    },
+    {
+      "id": "description",
+      "type": "text",
+      "label": {
+        "ar": "وصف الصورة",
+        "en": "Alt text"
+      }
+    },
+    {
+      "id": "url",
+      "type": "url",
+      "label": {
+        "ar": "الرابط",
+        "en": "Link"
+      }
+    }
+  ]
+}

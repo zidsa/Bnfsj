@@ -1,0 +1,609 @@
+# en translations for the bnfsj product landing page
+# Generated from the source theme locale catalog.
+msgid ""
+msgstr ""
+"Project-Id-Version: bnfsj\n"
+"PO-Revision-Date: 2026-09-10 00:00+0300\n"
+"Language: en\n"
+"Language-Team: en\n"
+"Last-Translator: Zid\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid " Bank accounts for regular transfers  "
+msgstr " Bank accounts for regular transfers  "
+
+msgid " My name does not appear in the list of clients  "
+msgstr " My name does not appear in the list of clients  "
+
+msgid "account number"
+msgstr "account number"
+
+msgid "Add Comment "
+msgstr "Add Comment "
+
+msgid "Add new Address"
+msgstr "Add new Address"
+
+msgid "add to cart"
+msgstr "add to cart"
+
+msgid "Add your question"
+msgstr "Add your question"
+
+msgid "Addresses"
+msgstr "Addresses"
+
+msgid "All categories"
+msgstr "All categories"
+
+msgid "All options available"
+msgstr "All options available"
+
+msgid "All products"
+msgstr "All products"
+
+msgid "All Products "
+msgstr "All Products "
+
+msgid "All reviews"
+msgstr "All reviews"
+
+msgid "And"
+msgstr "And"
+
+msgid "Available in several options"
+msgstr "Available in several options"
+
+msgid "average rating"
+msgstr "average rating"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Bad"
+msgstr "Bad"
+
+msgid "Bank Accounts"
+msgstr "Bank Accounts"
+
+msgid "Before"
+msgstr "Before"
+
+msgid "Buy Now"
+msgstr "Buy Now"
+
+msgid "Buy now"
+msgstr "Buy Now"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Cart is empty"
+msgstr "Cart is empty"
+
+msgid "Cart items"
+msgstr "Cart items"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Check Out this Product"
+msgstr "Check Out this Product"
+
+msgid "choose"
+msgstr "choose"
+
+msgid "Cities"
+msgstr "Cities"
+
+msgid "City"
+msgstr "City"
+
+msgid "Clear"
+msgstr "Clear"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Contact us"
+msgstr "Contact us"
+
+msgid "continue shopping"
+msgstr "continue shopping"
+
+msgid "Country"
+msgstr "Country"
+
+msgid "Coverd Cities"
+msgstr "Coverd Cities"
+
+msgid "Created at"
+msgstr "Created at"
+
+msgid "Customer reviews "
+msgstr "Customer reviews "
+
+msgid "Days"
+msgstr "Days"
+
+msgid "days"
+msgstr "Days"
+
+msgid "Decrease quantity"
+msgstr "Decrease quantity"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Discard cart & continue shopping"
+msgstr "Discard cart & continue shopping"
+
+msgid "Discount"
+msgstr "Discount"
+
+msgid "Discount coupon"
+msgstr "Discount coupon"
+
+msgid "Dislike"
+msgstr "Dislike"
+
+msgid "Display all products"
+msgstr "Display all products"
+
+msgid "Don't show my name in the customer reviews list"
+msgstr "Don't show my name in the customer reviews list"
+
+msgid "each"
+msgstr "each"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Email is incorrect"
+msgstr "Email is incorrect"
+
+msgid "Enjoy free shipping for the cities"
+msgstr "Enjoy free shipping for the cities"
+
+msgid "Enter discount coupon"
+msgstr "Enter discount coupon"
+
+msgid "Enter your email"
+msgstr "Enter your email"
+
+msgid "Enter your name"
+msgstr "Enter your name"
+
+msgid "Enter your phone (Optional)"
+msgstr "Enter your phone (Optional)"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Excellent"
+msgstr "Excellent"
+
+msgid "failed to send"
+msgstr "failed to send"
+
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Free Shipping"
+msgstr "Free Shipping"
+
+msgid "From"
+msgstr "From"
+
+msgid "Go to Home"
+msgstr "Go to Home"
+
+msgid "Good"
+msgstr "Good"
+
+msgid "Great"
+msgstr "Great"
+
+msgid "Hello"
+msgstr "Hello"
+
+msgid "High to low"
+msgstr "High to low"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Hours"
+msgstr "Hours"
+
+msgid "hours"
+msgstr "Hours"
+
+msgid "IBAN Number"
+msgstr "IBAN Number"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Increase quantity"
+msgstr "Increase quantity"
+
+msgid "Inside Merchant City"
+msgstr "Inside Merchant City"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Leave a review"
+msgstr "Leave a review"
+
+msgid "Leave Comment"
+msgstr "Leave Comment"
+
+msgid "List of supported payment options"
+msgstr "List of supported payment options"
+
+msgid "List of supported shipping options"
+msgstr "List of supported shipping options"
+
+msgid "location on map"
+msgstr "location on map"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Low to high"
+msgstr "Low to high"
+
+msgid "Minutes"
+msgstr "Minutes"
+
+msgid "minutes"
+msgstr "Minutes"
+
+msgid "Mobile number"
+msgstr "Mobile number"
+
+msgid "More"
+msgstr "More"
+
+msgid "more information"
+msgstr "more information"
+
+msgid "More reviews"
+msgstr "More reviews"
+
+msgid "Most popular"
+msgstr "Most popular"
+
+msgid "name"
+msgstr "name"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Newest"
+msgstr "Newest"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "No images"
+msgstr "No images"
+
+msgid "No products"
+msgstr "No products"
+
+msgid "No Result Found"
+msgstr "No Result Found"
+
+msgid "No reviews, add yours"
+msgstr "No reviews, add yours"
+
+msgid "Notify me when available"
+msgstr "Notify me when available"
+
+msgid "Notify me when product is available"
+msgstr "Notify me when product is available"
+
+msgid "Number of characters left:250"
+msgstr "Number of characters left:250"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Option not available"
+msgstr "Option not available"
+
+msgid "Or"
+msgstr "Or"
+
+msgid "Order"
+msgstr "Order"
+
+msgid "Orders"
+msgstr "Orders"
+
+msgid "Our place"
+msgstr "Our place"
+
+msgid "Outside Merchant City"
+msgstr "Outside Merchant City"
+
+msgid "Package"
+msgstr "Package"
+
+msgid "Page not found"
+msgstr "Page not found"
+
+msgid "Payment and delivery options"
+msgstr "Payment and delivery options"
+
+msgid "Payment Options"
+msgstr "Payment Options"
+
+msgid "Payment Upon Receopt"
+msgstr "Payment Upon Receopt"
+
+msgid "Personal Information"
+msgstr "Personal Information"
+
+msgid "Please add a comment"
+msgstr "Please add a comment"
+
+msgid "Please leave your rating"
+msgstr "Please leave your rating"
+
+msgid "Prev"
+msgstr "Prev"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "price"
+msgstr "price"
+
+msgid "Price incl. VAT"
+msgstr "Price incl. VAT"
+
+msgid "Price Not incl. VAT"
+msgstr "Price Not incl. VAT"
+
+msgid "Product"
+msgstr "Product"
+
+msgid "product description"
+msgstr "product description"
+
+msgid "Product images"
+msgstr "Product images"
+
+msgid "product information"
+msgstr "product information"
+
+msgid "Product is out of stock"
+msgstr "This product is out of stock"
+
+msgid "product sku"
+msgstr "product sku"
+
+msgid "product_readmore"
+msgstr "product_readmore"
+
+msgid "Products"
+msgstr "Products"
+
+msgid "products"
+msgstr "products"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "Purchase"
+msgstr "Purchase"
+
+msgid "Quantity"
+msgstr "Quantity"
+
+msgid "Questions"
+msgstr "Questions"
+
+msgid "Read More"
+msgstr "Read More"
+
+msgid "Remaining %s only"
+msgstr "Remaining %s only"
+
+msgid "review"
+msgstr "review"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "Riyadh"
+msgstr "Riyadh"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search results for"
+msgstr "Search results for"
+
+msgid "Seconds"
+msgstr "Seconds"
+
+msgid "seconds"
+msgstr "Seconds"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Send as anonymous"
+msgstr "Send as anonymous"
+
+msgid "Send Evaluation"
+msgstr "Send Evaluation"
+
+msgid "Send Successfully"
+msgstr "Send Successfully"
+
+msgid "Sent successfully"
+msgstr "Sent successfully"
+
+msgid "share product"
+msgstr "share product"
+
+msgid "Shipping Charges "
+msgstr "Shipping Charges "
+
+msgid "Shipping Option"
+msgstr "Shipping Option"
+
+msgid "Show discounted only"
+msgstr "Show discounted only"
+
+msgid "Sold more than %s times"
+msgstr "Sold more than %s times"
+
+msgid "Sorry"
+msgstr "Sorry"
+
+msgid "Sorry, an error occurred.. Please try again"
+msgstr "Sorry, an error occurred.. Please try again"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "status"
+msgstr "status"
+
+msgid "Submit"
+msgstr "Submit"
+
+msgid "Tax free"
+msgstr "Tax free"
+
+msgid "Thank you for your review, the rating will be reviewed and posted on the store"
+msgstr "Thank you for your review, the rating will be reviewed and posted on the store"
+
+msgid "The commercial register number:"
+msgstr "The commercial register number:"
+
+msgid "The VAT number:"
+msgstr "The VAT number:"
+
+msgid "There is no questions,"
+msgstr "There is no questions,"
+
+msgid "There is not enough additional quantity of this product"
+msgstr "There is not enough additional quantity of this product"
+
+msgid "This field is required"
+msgstr "This field is required"
+
+msgid "This product is no longer available"
+msgstr "This product is no longer available"
+
+msgid "This product is out of stock"
+msgstr "This product is out of stock"
+
+msgid "Through the address book, you can add and edit your favorite addresses"
+msgstr "Through the address book, you can add and edit your favorite addresses"
+
+msgid "Through the list of orders, you can view previous and current orders"
+msgstr "Through the list of orders, you can view previous and current orders"
+
+msgid "To"
+msgstr "To"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Total products"
+msgstr "Total products"
+
+msgid "Total summary"
+msgstr "Total summary"
+
+msgid "value"
+msgstr "value"
+
+msgid "View all questions"
+msgstr "View all questions"
+
+msgid "Weight"
+msgstr "Weight"
+
+msgid "Welcome"
+msgstr "Welcome"
+
+msgid "Write your comment here"
+msgstr "Write your comment here"
+
+msgid "Write your question here"
+msgstr "Write your question here"
+
+msgid "you can ask for this product"
+msgstr "you can ask for this product"
+
+msgid "You have an active payment session in another browser, you can't edit the cart contents"
+msgstr "You have an active payment session in another browser, you can't edit the cart contents"
+
+msgid "You may also like"
+msgstr "You may also like"
+
+msgid "You will be redirected to the home page in"
+msgstr "You will be redirected to the home page in"
+
+msgid "Your comment exceeded the limit"
+msgstr "Your comment exceeded the limit"
+
+msgid "Your comment must contain at least 3 characters."
+msgstr "Your comment must contain at least 3 characters."
+
+msgid "Your contact information"
+msgstr "Your contact information"
+
+msgid "Your question has been sent successfully. You will receive a notification if it is answered."
+msgstr "Your question has been sent successfully. You will receive a notification if it is answered."
+
+msgid "Your review"
+msgstr "Your review"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "View image"
+msgstr "View image"
+
+msgid "View product"
+msgstr "View product"
+
+msgid "Countdown"
+msgstr "Countdown"
+
+msgid "Payment method"
+msgstr "Payment method"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Your browser does not support the video tag."
+msgstr "Your browser does not support the video tag."

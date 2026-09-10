@@ -1,0 +1,23 @@
+{% extends "layout.jinja" %}
+
+{% block content %}
+  {% if components | default({}, true) %}
+    {% template_components %}
+  {% else %}
+    {# Keep a newly-created landing usable until its component profile is seeded. #}
+    {% set sectionId = 'bnfsj-product-fallback' %}
+    {% include "sections/product-section.jinja" with context %}
+  {% endif %}
+
+  {# The SDK quick checkout reads the same selected_product object as product pages. #}
+  <script>
+    window.productObj = {{ product | tojson | safe }};
+    window.productObj.selected_product = {{ product.selected_product | tojson | safe }};
+  </script>
+
+  {% include 'components/product-purchase-bar.jinja' %}
+{% endblock %}
+
+{% block footer_scripts %}
+  <script defer src="{{ 'bnfsj-product.js?v=1.1.1' | asset_url }}"></script>
+{% endblock %}
