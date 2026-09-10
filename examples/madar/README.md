@@ -1,7 +1,6 @@
 # Madar: ten-section example
 
-Madar is a page profile for Bnfsj, available in testing at
-https://hdywzs.zidtest.com/l/bnfsj-madar. Its ten sections are header,
+Madar is an example page configuration for Bnfsj. Its ten sections are header,
 announcement, product, design facts, color introduction, gallery, design
 details, payment methods, social links, and copyright. Arabic and English
 content live in the same profile with stable section IDs.
@@ -17,10 +16,9 @@ Royal `#3C1C54`, Dark `#1F0433`, White `#FFFFFF`, Neutral `#F5F4F6`, and Silver
 `#E8E4EB`. Product images keep their original colors. The gallery uses the
 existing Madar front images; the four feature icons are inline SVG image URLs.
 
-The profile belongs to testing store `21344`, installation
-`3f6d3a0d-c570-4b33-85c1-ccc01ccacc32`, and setting profile
-`b02eb3c0-226f-43cb-b4af-a3aeda72e828`. Always pass its profile ID when updating
-or publishing settings. Nawa has a separate profile on the same installation.
+Apply the example to a page through the merchant editor. Each page has its own
+configuration; no particular store, installation, or settings record is required
+by the theme code.
 
 To validate this configuration locally from the repository root:
 

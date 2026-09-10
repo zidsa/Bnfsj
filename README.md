@@ -86,12 +86,11 @@ SDK, localization, editor persistence, and checkout still need testing on Vitrin
 
 ## Publication
 
-Create a theme version with `keep_using_latest: false`, upload the deterministic
-ZIP using its returned presigned form, attach the returned artifact key, and use
-the normal approved-theme publication workflow. Keep the existing theme,
-installation, preset, page, and profile IDs. Update and publish each page's
-settings through its own `setting_profile_id`; do not activate a global theme.
+Build the ZIP and publish it through the platform's theme workflow. Configure
+each landing page independently in the merchant editor. The theme receives the
+page's settings from Vitrin and does not require hardcoded deployment identifiers.
 
-Credentials are supplied only at execution time. See [QA.md](QA.md) for the
-release verification record and [examples/madar/README.md](examples/madar/README.md)
+Keep deployment identifiers, credentials, and environment-specific operational
+notes outside this repository. See [QA.md](QA.md) for the
+verification record and [examples/madar/README.md](examples/madar/README.md)
 for the ten-section example.
