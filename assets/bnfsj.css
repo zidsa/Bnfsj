@@ -180,6 +180,13 @@
   text-align: start;
   overflow-wrap: anywhere;
 }
+/* Platform bundle kit container: spacing only, the kit owns its own presentation. */
+.bnfsj .bnfsj-product-bundle {
+  margin-block-start: 16px;
+}
+.bnfsj .bnfsj-product-bundle:empty {
+  margin-block-start: 0;
+}
 .bnfsj .product-formatted-price {
   color: var(--bnfsj-primary);
   font-size: 28px;

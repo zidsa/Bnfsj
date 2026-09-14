@@ -15,9 +15,98 @@
     window.productObj.selected_product = {{ product.selected_product | tojson | safe }};
   </script>
 
+  {# The bundle kit has no event replay. Capture selections before the deferred
+     runtime loads so a complete bundle is never left behind a locked button. #}
+  <script>
+    (function () {
+      window.addEventListener('vitrin:bundle-selections:updated', function (event) {
+        var data = (event && event.detail && event.detail.data) || {};
+        window.__bnfsjBundleSelections = {
+          cartPayload: data.cartPayload || null,
+          isSelectionsValid: data.isSelectionsValid === true
+        };
+        window.bundleCartPayload = data.cartPayload || null;
+        if (window.productObj && window.productObj.selected_product)
+          window.productObj.selected_product.sub_items_payload =
+            (data.cartPayload && data.cartPayload.sub_items) || [];
+      });
+    })();
+  </script>
+
+  {% if product.product_class == 'dynamic_bundle' %}
+    {# Compatibility shim for stores still serving a bnfsj-product.js that
+       predates bundle support: assets live under the theme version directory,
+       so an in-place push ships templates without the runtime. It gates the
+       purchase controls and submits sub_items itself, and disables itself as
+       soon as a bundle-aware runtime is present. Safe to delete once every
+       store serves 1.2.0 or later. #}
+    <script>
+      (function () {
+        var CHECKOUT = '/checkout/choose-address-and-shipping';
+        var busy = false;
+        function runtimeHandlesBundles() {
+          return !!(window.bnfsjProduct && window.bnfsjProduct.bundle);
+        }
+        function selectionsValid() {
+          var captured = window.__bnfsjBundleSelections;
+          return !!(captured && captured.isSelectionsValid);
+        }
+        function gate(valid) {
+          document.querySelectorAll('[data-bnfsj-purchase-lock]').forEach(function (element) {
+            element.style.pointerEvents = valid ? '' : 'none';
+            element.style.opacity = valid ? '' : '0.55';
+          });
+          document.querySelectorAll('[data-bnfsj-buy-now], [data-bnfsj-add-to-cart]').forEach(function (element) {
+            element.disabled = !valid;
+            element.classList.toggle('disabled', !valid);
+          });
+        }
+        function progress(active) {
+          document.querySelectorAll('.add-to-cart-progress').forEach(function (element) {
+            element.classList.toggle('d-none', !active);
+          });
+        }
+        window.addEventListener('vitrin:bundle-selections:updated', function (event) {
+          if (runtimeHandlesBundles()) return;
+          var data = (event && event.detail && event.detail.data) || {};
+          gate(data.isSelectionsValid === true);
+        });
+        // Capture phase, so the older runtime's document listener never runs and
+        // cannot submit the bundle without its sub_items.
+        document.addEventListener('click', function (event) {
+          if (runtimeHandlesBundles()) return;
+          var target = event.target.closest &&
+            event.target.closest('[data-bnfsj-buy-now], [data-bnfsj-add-to-cart]');
+          if (!target) return;
+          event.preventDefault();
+          event.stopPropagation();
+          var payload = window.bundleCartPayload;
+          var cart = window.zid && window.zid.cart;
+          if (busy || !selectionsValid() || !payload || !cart || !cart.addProduct) {
+            gate(selectionsValid());
+            return;
+          }
+          var options = {};
+          Object.keys(payload).forEach(function (key) {
+            options[key] = payload[key];
+          });
+          options.form_id = 'product-form';
+          busy = true;
+          progress(true);
+          cart.addProduct(options, { showErrorNotification: true }).then(function () {
+            window.location.href = CHECKOUT;
+          }).catch(function () {
+            busy = false;
+            progress(false);
+          });
+        }, true);
+      })();
+    </script>
+  {% endif %}
+
   {% include 'components/product-purchase-bar.jinja' %}
 {% endblock %}
 
 {% block footer_scripts %}
-  <script defer src="{{ 'bnfsj-product.js?v=1.1.1' | asset_url }}"></script>
+  <script defer src="{{ 'bnfsj-product.js?v=1.2.0' | asset_url }}"></script>
 {% endblock %}

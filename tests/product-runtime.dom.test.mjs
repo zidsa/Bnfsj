@@ -34,7 +34,7 @@ function fixture(
         <div class="js-section-add-to-cart"><button data-bnfsj-add-to-cart>Add</button></div>
       </form>
     </section>
-    <div class="buying-buttons"><div class="js-section-add-to-cart"><button data-bnfsj-buy-now>Buy</button></div>
+    <div class="buying-buttons"><div class="js-section-add-to-cart" data-bnfsj-purchase-lock style="pointer-events:none;opacity:0.55"><button data-bnfsj-buy-now>Buy</button></div>
       <button data-bnfsj-quantity-decrease>−</button><input id="product-quantity-floating" value="1"><button data-bnfsj-quantity-increase>+</button>
     </div>
     <div class="js-section-apple-pay-quick-checkout"></div>
@@ -47,8 +47,13 @@ function fixture(
   return { dom, root, products };
 }
 
-function setup(selected, sdk) {
+function setup(selected, sdk, options = {}) {
   const value = fixture(selected);
+  if (options.bundle) value.root.setAttribute("data-bnfsj-bundle", "");
+  if (options.productClass)
+    value.dom.window.productObj.product_class = options.productClass;
+  if (options.captured)
+    value.dom.window.__bnfsjBundleSelections = options.captured;
   const runtime = initialize(value.root, {
     global: value.dom.window,
     controlsRoot: value.dom.window.document,
@@ -175,6 +180,156 @@ test("initializer is idempotent and destroy permits clean reinitialization", () 
   });
   assert.notEqual(next, page.runtime);
   next.destroy();
+});
+
+function bundleSelections(page, isSelectionsValid, subItems) {
+  page.dom.window.dispatchEvent(
+    new page.dom.window.CustomEvent("vitrin:bundle-selections:updated", {
+      detail: {
+        data: {
+          cartPayload: {
+            product_id: "parent-1",
+            quantity: 1,
+            sub_items: subItems,
+          },
+          isSelectionsValid,
+        },
+        timestamp: Date.now(),
+        source: "kit",
+      },
+    }),
+  );
+}
+
+test("dynamic bundle purchase waits for complete selections and sends sub items", async () => {
+  const payloads = [];
+  const page = setup(
+    undefined,
+    {
+      cart: {
+        addProduct: (payload) => {
+          payloads.push(payload);
+          return Promise.resolve({ item: { id: 7 }, cart_items_quantity: 1 });
+        },
+      },
+    },
+    { bundle: true },
+  );
+  const buy = page.dom.window.document.querySelector("[data-bnfsj-buy-now]");
+  const applePay = page.dom.window.document.querySelector(
+    ".js-section-apple-pay-quick-checkout",
+  );
+  const lock = page.dom.window.document.querySelector(
+    "[data-bnfsj-purchase-lock]",
+  );
+  assert.equal(buy.disabled, true);
+  assert.equal(applePay.classList.contains("d-none"), true);
+  assert.equal(lock.style.pointerEvents, "none");
+  assert.equal(await page.runtime.actions.add(), false);
+  assert.equal(payloads.length, 0);
+
+  const items = [{ product_id: "child-1", quantity: 1 }];
+  bundleSelections(page, false, items);
+  assert.equal(buy.disabled, true);
+  assert.equal(buy.classList.contains("disabled"), true);
+  assert.equal(await page.runtime.actions.add(), false);
+
+  // Third-party code clearing the attribute must not open a path to the cart.
+  buy.disabled = false;
+  buy.dispatchEvent(new page.dom.window.MouseEvent("click", { bubbles: true }));
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.equal(payloads.length, 0);
+  assert.equal(buy.disabled, true);
+
+  bundleSelections(page, true, items);
+  assert.equal(buy.disabled, false);
+  assert.equal(buy.classList.contains("disabled"), false);
+  assert.equal(applePay.classList.contains("d-none"), false);
+  assert.equal(lock.style.pointerEvents, "");
+  // Quick checkout reads sub_items_payload from the selected product.
+  assert.deepEqual(
+    page.dom.window.productObj.selected_product.sub_items_payload,
+    items,
+  );
+  assert.equal(await page.runtime.actions.add(), true);
+  assert.equal(payloads[0].form_id, "product-form");
+  assert.deepEqual(payloads[0].sub_items, items);
+  assert.deepEqual(page.dom.window.bundleCartPayload.sub_items, items);
+
+  page.runtime.destroy();
+  assert.equal("bundleCartPayload" in page.dom.window, false);
+});
+
+test("a selection captured before initialization is replayed instead of blocking", async () => {
+  const payloads = [];
+  const items = [{ product_id: "child-1", quantity: 2 }];
+  const page = setup(
+    undefined,
+    {
+      cart: {
+        addProduct: (payload) => {
+          payloads.push(payload);
+          return Promise.resolve({ item: { id: 9 }, cart_items_quantity: 1 });
+        },
+      },
+    },
+    {
+      bundle: true,
+      // The kit emitted while the deferred runtime was still loading.
+      captured: {
+        cartPayload: {
+          product_id: "parent-1",
+          quantity: 1,
+          sub_items: items,
+        },
+        isSelectionsValid: true,
+      },
+    },
+  );
+  const buy = page.dom.window.document.querySelector("[data-bnfsj-buy-now]");
+  const lock = page.dom.window.document.querySelector(
+    "[data-bnfsj-purchase-lock]",
+  );
+  assert.equal(page.runtime.bundle.status().valid, true);
+  assert.equal(buy.disabled, false);
+  assert.equal(lock.style.pointerEvents, "");
+  assert.equal(await page.runtime.actions.add(), true);
+  assert.deepEqual(payloads[0].sub_items, items);
+  page.runtime.destroy();
+});
+
+test("bundle gating falls back to product_class and leaves plain products untouched", async () => {
+  const payloads = [];
+  const sdk = {
+    cart: {
+      addProduct: (payload) => {
+        payloads.push(payload);
+        return Promise.resolve({ item: { id: 8 }, cart_items_quantity: 1 });
+      },
+    },
+  };
+  const gated = setup(undefined, sdk, { productClass: "dynamic_bundle" });
+  assert.equal(
+    gated.dom.window.document.querySelector("[data-bnfsj-buy-now]").disabled,
+    true,
+  );
+  assert.equal(await gated.runtime.actions.add(), false);
+  gated.runtime.destroy();
+
+  const plain = setup(undefined, sdk);
+  assert.equal(
+    plain.dom.window.document.querySelector("[data-bnfsj-buy-now]").disabled,
+    false,
+  );
+  // A plain product must never be left behind an inline purchase lock.
+  assert.equal(
+    plain.dom.window.document.querySelector("[data-bnfsj-purchase-lock]").style
+      .pointerEvents,
+    "",
+  );
+  assert.equal(await plain.runtime.actions.add(), true);
+  assert.deepEqual(payloads, [{ form_id: "product-form" }]);
+  plain.runtime.destroy();
 });
 
 // Exercise the exact shipped classic script without module loading or CDN fetches.

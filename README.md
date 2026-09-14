@@ -41,6 +41,41 @@ submission lock. The existing native globals and form selectors are retained for
 Vitrin custom-field and checkout integration. Native Apple Pay and custom-field
 markup remain platform partials.
 
+A `dynamic_bundle` product renders the platform bundle kit and gets `data-bnfsj-bundle`
+on the product section. `product-bundle.js` listens for
+`vitrin:bundle-selections:updated`, publishes the payload as `window.bundleCartPayload`
+and `selected_product.sub_items_payload` for quick checkout, and re-dispatches
+`bnfsj:bundle:updated`. Purchase buttons ship disabled for a bundle and stay
+disabled, along with Apple Pay quick checkout, until the kit reports a complete
+selection; the cart submission then carries `sub_items` alongside `form_id`.
+
+Bundle gating fails closed at three levels, because an incomplete bundle must
+never reach the cart. The template renders `data-bnfsj-purchase-lock` with an
+inline `pointer-events:none` on the purchase controls, which the runtime clears
+only for a valid selection; a stale cached runtime therefore blocks the click
+instead of submitting without sub-items. The delegated click handler re-checks
+the bundle in case other code clears the `disabled` attribute, and the cart
+action refuses to submit while the bundle is blocked. Publish bundle-affecting
+asset changes as a new theme version: an in-place push leaves browsers holding
+the previous `bnfsj-product.js` against new templates.
+
+The kit's event bridge does not replay, so a landing page captures selections in
+an inline listener into `window.__bnfsjBundleSelections` and the runtime adopts
+that state on initialization. Without it, a kit that emits before the deferred
+bundle loads would leave a complete selection behind a locked button.
+`window.bnfsjProduct.bundle.status()` reports `isBundle`, `blocked`, `received`,
+`valid`, and the current payload for diagnosing a stuck purchase bar on a store.
+`!!window.bnfsjProduct.bundle` is the only reliable check for whether a store
+serves a bundle-aware runtime; `data-bnfsj-version` comes from the template and
+tracks the templates, not the published assets.
+
+A bundle page also carries an inline compatibility shim, because `asset_url`
+resolves assets under the theme version directory: an in-place push can ship new
+templates against a previously published `bnfsj-product.js`. The shim gates the
+purchase controls from the same event and submits `sub_items` itself, refusing
+incomplete selections, and stands down as soon as a bundle-aware runtime is
+present. Remove it once every store serves 1.2.0 or later.
+
 Variant controls and gallery navigation use native buttons, accessible labels,
 visible focus styles, and locale-aware direction. Countdown instances use scoped
 data attributes rather than shared element IDs.
@@ -76,7 +111,8 @@ a deterministic ZIP while preserving authored templates and styles. Validation
 checks paths, schemas, asset references, and real Jinja component
 composition. Tests cover every section in Arabic/English, repeated countdowns,
 hidden/reordered sections, missing images, independent colors, runtime cleanup,
-finite inventory, concurrent selections, and failed cart/selection requests, and the exact bundled browser entry.
+finite inventory, concurrent selections, failed cart/selection requests, dynamic
+bundle gating and sub-item payloads, and the exact bundled browser entry.
 The checked-in product fixture contains no customer or credential data.
 
 For a visual preview, use `--html-output /tmp/bnfsj.html`. An optional `--preset`

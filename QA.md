@@ -61,6 +61,74 @@ now produces one classic browser bundle. The exact shipped bundle is exercised
 by a DOM integration test. Payment icons use original URLs because the image
 transformation proxy could not load the testing static icons.
 
+## Dynamic bundle support (1.2.0)
+
+Added after the 1.1.1 browser record, verified locally only. Asset cache-busters
+and `data-bnfsj-version` move to 1.2.0.
+
+- 20 JavaScript tests pass, including two new bundle cases: a bundle blocks the
+  cart before selections arrive and while they are incomplete, releases the
+  purchase button and Apple Pay once the kit reports a valid selection, sends
+  `sub_items` with `form_id`, publishes `bundleCartPayload` and
+  `sub_items_payload`, restores the global on destroy, gates from
+  `productObj.product_class` when the section marker is absent, and leaves plain
+  products submitting `form_id` alone.
+- 12 Python tests pass. Arabic and English source validation and ZIP validation
+  pass; the ZIP contains 152 files and 101 assets (591,746 bytes).
+- Rendering with a fixture carrying `product_class: dynamic_bundle` confirms the
+  section marker, the bundle container, and the server-side disabled purchase
+  button. A plain fixture renders unchanged markup.
+- Not verified: the deployed bundle kit itself. Local validation stubs
+  `vitrin:products/bundle-products.jinja`, so live selection UI, event timing,
+  and a real bundle order still need a store check.
+
+### Stale-runtime finding
+
+A store check showed a bundle Buy Now button carrying the `disabled` class
+without the `disabled` attribute, and a click still sending
+`{form_id: "product-form"}` with no sub-items. Replaying the 1.1.1 and 1.2.0
+bundles against the current markup in JSDOM reproduced it: 1.1.1 clears the
+attribute it does not understand and leaves the class, so the page was serving
+new templates with the previously cached runtime. Bootstrap's `.disabled` class
+does not block clicks on a `<button>`, so the button stayed live.
+
+The gate is now layered: an inline `pointer-events:none` lock on the purchase
+controls that only a bundle-aware runtime clears, a bundle re-check in the click
+handler, and the existing refusal inside the cart action. Browser hit-testing
+enforces the inline lock, so that layer is not reproducible in JSDOM and was not
+asserted; the click-handler and cart-action layers are covered by tests. Ship
+bundle asset changes as a new theme version rather than an in-place push.
+
+### Stale published asset finding
+
+A store reported `data-bnfsj-version` at 1.2.0 with `window.bnfsjProduct.bundle`
+undefined: new templates against the previously published runtime. The platform's
+`asset_url` builds paths from the theme version id, and the store's asset
+directory and `?v=` token were unchanged across every report, so an in-place push
+had shipped templates while that version's assets stayed. Only a new theme
+version changes the directory. `data-bnfsj-version` is therefore not a signal for
+asset freshness; `!!window.bnfsjProduct.bundle` is.
+
+A bundle page now carries an inline shim for that case. Rendering the bundle page
+and executing it in JSDOM against the previous runtime confirms an incomplete
+selection stays locked and submits nothing even when the disabled attribute is
+forced off, a complete selection releases the controls and submits
+`sub_items` with `form_id`, and the shim stands down under the current runtime
+with exactly one submission and no double add. That scenario mixes a rendered
+template with an older asset, so it is not part of the automated suite; the
+runtime-side layers are.
+
+### Event replay finding
+
+A locked button after a completed selection exposed a second gap: the kit's event
+bridge has no replay, so a selection emitted before the deferred runtime attached
+its listener was lost and the gate never opened. The landing page now captures
+selections in an inline listener and the runtime adopts that state at startup.
+Rendering the bundle page and executing it in JSDOM with the shipped runtime
+confirms both orderings release the controls and send
+`sub_items` with `form_id`: the kit emitting before the runtime bundle executes,
+and after. 21 JavaScript tests pass, including a replay case.
+
 ## Limits
 
 No real order or payment is required for this verification. Stock-alert email

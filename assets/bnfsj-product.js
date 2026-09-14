@@ -7,6 +7,7 @@
     var quantity = options.quantity;
     var getSdk = options.getSdk;
     var global = options.global || window;
+    var bundle = options.bundle || null;
     var waitForSelection = options.waitForSelection || function() {
       return Promise.resolve();
     };
@@ -32,7 +33,8 @@
     function cartPayload() {
       var input = root2.querySelector("#product-quantity");
       quantity.set(input ? input.value : 1);
-      return { form_id: "product-form" };
+      var payload = { form_id: "product-form" };
+      return bundle ? bundle.apply(payload) : payload;
     }
     function submitCart(checkout) {
       return lock(function() {
@@ -42,6 +44,7 @@
           if (!zid || !zid.cart || !zid.cart.addProduct) return false;
           return waitForSelection().then(function() {
             if (!available(getSelected())) return false;
+            if (bundle && bundle.blocked()) return false;
             return zid.cart.addProduct(cartPayload(), { showErrorNotification: true }).then(function(result) {
               if (checkout) {
                 global.location.href = redirectPath;
@@ -100,6 +103,99 @@
       available,
       isBusy: function() {
         return busy;
+      }
+    };
+  }
+
+  // src/product/product-bundle.js
+  var BUNDLE_EVENT = "vitrin:bundle-selections:updated";
+  var BUNDLE_CLASS = "dynamic_bundle";
+  var BUNDLE_CAPTURE = "__bnfsjBundleSelections";
+  function createBundleController(options) {
+    options = options || {};
+    var root2 = options.root;
+    var global = options.global || window;
+    var getState = options.getState || function() {
+      return global.productObj || {};
+    };
+    var onChange = options.onChange || function() {
+    };
+    var payload = null;
+    var valid = false;
+    var received = false;
+    var hadGlobal = "bundleCartPayload" in global;
+    var previousGlobal = global.bundleCartPayload;
+    function isBundle() {
+      if (received) return true;
+      if (root2 && root2.hasAttribute && root2.hasAttribute("data-bnfsj-bundle"))
+        return true;
+      var state = getState() || {};
+      return state.product_class === BUNDLE_CLASS;
+    }
+    function adopt(data) {
+      if (!data) return false;
+      payload = data.cartPayload || null;
+      valid = data.isSelectionsValid === true;
+      received = true;
+      global.bundleCartPayload = payload;
+      var selected = (getState() || {}).selected_product;
+      if (selected)
+        selected.sub_items_payload = payload && payload.sub_items || [];
+      return true;
+    }
+    function handle(event) {
+      adopt(event && event.detail && event.detail.data || {});
+      global[BUNDLE_CAPTURE] = { cartPayload: payload, isSelectionsValid: valid };
+      onChange({ payload, valid });
+      global.dispatchEvent(
+        new global.CustomEvent("bnfsj:bundle:updated", {
+          detail: { payload, valid }
+        })
+      );
+    }
+    global.addEventListener(BUNDLE_EVENT, handle);
+    adopt(global[BUNDLE_CAPTURE]);
+    return {
+      isBundle,
+      // An incomplete bundle must never reach the cart.
+      blocked: function() {
+        return isBundle() && !valid;
+      },
+      payload: function() {
+        return payload;
+      },
+      isValid: function() {
+        return valid;
+      },
+      received: function() {
+        return received;
+      },
+      // Readable state for diagnosing a blocked purchase bar on a live store.
+      status: function() {
+        return {
+          isBundle: isBundle(),
+          blocked: isBundle() && !valid,
+          received,
+          valid,
+          payload
+        };
+      },
+      // A form_id submission keeps only sub_items from here; the SDK reads the rest of the form.
+      apply: function(base) {
+        if (!payload) return base;
+        var merged = {};
+        Object.keys(payload).forEach(function(key) {
+          merged[key] = payload[key];
+        });
+        Object.keys(base || {}).forEach(function(key) {
+          merged[key] = base[key];
+        });
+        return merged;
+      },
+      destroy: function() {
+        global.removeEventListener(BUNDLE_EVENT, handle);
+        if (hadGlobal) global.bundleCartPayload = previousGlobal;
+        else delete global.bundleCartPayload;
       }
     };
   }
@@ -562,6 +658,15 @@
       return value.selected_product || value;
     };
     var quantity = createQuantityController(root2, selected, root2.ownerDocument);
+    var bundle = createBundleController({
+      root: root2,
+      global,
+      getState: state,
+      onChange: function() {
+        updateAvailability(selected());
+        busy(0);
+      }
+    });
     var controlsBusy = 0;
     function busy(value) {
       controlsBusy += typeof value === "number" ? value : value ? 1 : -1;
@@ -570,7 +675,7 @@
       root2.ownerDocument.querySelectorAll(
         "[data-bnfsj-add-to-cart], [data-bnfsj-buy-now], [data-bnfsj-stock-alert]"
       ).forEach(function(element) {
-        element.disabled = locked || element.matches("[data-bnfsj-add-to-cart], [data-bnfsj-buy-now]") && !actions.available(selected());
+        element.disabled = locked || element.matches("[data-bnfsj-add-to-cart], [data-bnfsj-buy-now]") && (!actions.available(selected()) || bundle.blocked());
       });
       root2.ownerDocument.querySelectorAll(".add-to-cart-progress, .send-notify-progress").forEach(function(element) {
         element.classList.toggle("d-none", !locked);
@@ -578,6 +683,7 @@
     }
     function updateAvailability(value) {
       var available = actions.available(value);
+      var purchasable = available && !bundle.blocked();
       root2.ownerDocument.querySelectorAll(".buying-buttons").forEach(function(element) {
         element.classList.toggle("d-none", !available);
       });
@@ -587,10 +693,15 @@
       });
       root2.ownerDocument.querySelectorAll("[data-bnfsj-buy-now], [data-bnfsj-add-to-cart]").forEach(function(element) {
         element.closest(".js-section-add-to-cart")?.classList.toggle("d-none", !available);
-        element.disabled = !available;
+        element.disabled = !purchasable;
+        element.classList.toggle("disabled", !purchasable);
       });
       root2.ownerDocument.querySelectorAll(".js-section-apple-pay-quick-checkout").forEach(function(element) {
-        element.classList.toggle("d-none", !available);
+        element.classList.toggle("d-none", !purchasable);
+      });
+      root2.ownerDocument.querySelectorAll("[data-bnfsj-purchase-lock]").forEach(function(element) {
+        element.style.pointerEvents = purchasable ? "" : "none";
+        element.style.opacity = purchasable ? "" : "0.55";
       });
     }
     function applyProduct(value) {
@@ -684,7 +795,8 @@
       redirectPath: config.redirectPath,
       onBusy: busy,
       global,
-      waitForSelection: selection.wait
+      waitForSelection: selection.wait,
+      bundle
     });
     var restoreSelection = selection.installGlobals(global);
     var actionNames = [
@@ -704,6 +816,11 @@
       );
       if (!target || !root2.contains(target) && !controlsRoot.contains(target))
         return;
+      if (target.matches("[data-bnfsj-buy-now], [data-bnfsj-add-to-cart]") && bundle.blocked()) {
+        event.preventDefault();
+        updateAvailability(selected());
+        return;
+      }
       if (target.matches("[data-bnfsj-buy-now]"))
         return void actions.buyNow().catch(function() {
         });
@@ -748,11 +865,13 @@
       selection,
       quantity,
       actions,
+      bundle,
       destroy: function() {
         listeners.splice(0).forEach(function(remove) {
           remove();
         });
         selection.destroy();
+        bundle.destroy();
         destroyGallery(root2);
         if (restoreSelection) restoreSelection();
         previousActions.forEach(function(entry) {

@@ -1,4 +1,5 @@
 import { createActionController } from "./product-actions.js";
+import { createBundleController } from "./product-bundle.js";
 import { renderGallery, destroyGallery } from "./product-gallery.js";
 import { createQuantityController } from "./product-quantity.js";
 import { createSelectionController } from "./product-selection.js";
@@ -48,6 +49,15 @@ export function initialize(root, config) {
     return value.selected_product || value;
   };
   var quantity = createQuantityController(root, selected, root.ownerDocument);
+  var bundle = createBundleController({
+    root: root,
+    global: global,
+    getState: state,
+    onChange: function () {
+      updateAvailability(selected());
+      busy(0);
+    },
+  });
   var controlsBusy = 0;
   function busy(value) {
     controlsBusy += typeof value === "number" ? value : value ? 1 : -1;
@@ -61,7 +71,7 @@ export function initialize(root, config) {
         element.disabled =
           locked ||
           (element.matches("[data-bnfsj-add-to-cart], [data-bnfsj-buy-now]") &&
-            !actions.available(selected()));
+            (!actions.available(selected()) || bundle.blocked()));
       });
     root.ownerDocument
       .querySelectorAll(".add-to-cart-progress, .send-notify-progress")
@@ -71,6 +81,8 @@ export function initialize(root, config) {
   }
   function updateAvailability(value) {
     var available = actions.available(value);
+    // A bundle stays visible but unusable until its selections are complete.
+    var purchasable = available && !bundle.blocked();
     root.ownerDocument
       .querySelectorAll(".buying-buttons")
       .forEach(function (element) {
@@ -88,12 +100,22 @@ export function initialize(root, config) {
         element
           .closest(".js-section-add-to-cart")
           ?.classList.toggle("d-none", !available);
-        element.disabled = !available;
+        element.disabled = !purchasable;
+        element.classList.toggle("disabled", !purchasable);
       });
+    // Quick checkout reads sub_items_payload, so hide it until the bundle is complete.
     root.ownerDocument
       .querySelectorAll(".js-section-apple-pay-quick-checkout")
       .forEach(function (element) {
-        element.classList.toggle("d-none", !available);
+        element.classList.toggle("d-none", !purchasable);
+      });
+    // The template locks bundle controls inline so a stale or absent runtime
+    // fails closed instead of submitting a bundle without its sub items.
+    root.ownerDocument
+      .querySelectorAll("[data-bnfsj-purchase-lock]")
+      .forEach(function (element) {
+        element.style.pointerEvents = purchasable ? "" : "none";
+        element.style.opacity = purchasable ? "" : "0.55";
       });
   }
   function applyProduct(value) {
@@ -206,6 +228,7 @@ export function initialize(root, config) {
     onBusy: busy,
     global: global,
     waitForSelection: selection.wait,
+    bundle: bundle,
   });
   var restoreSelection = selection.installGlobals(global);
   var actionNames = [
@@ -227,6 +250,15 @@ export function initialize(root, config) {
       );
     if (!target || (!root.contains(target) && !controlsRoot.contains(target)))
       return;
+    // Anything may clear the disabled attribute, so re-check the bundle here.
+    if (
+      target.matches("[data-bnfsj-buy-now], [data-bnfsj-add-to-cart]") &&
+      bundle.blocked()
+    ) {
+      event.preventDefault();
+      updateAvailability(selected());
+      return;
+    }
     if (target.matches("[data-bnfsj-buy-now]"))
       return void actions.buyNow().catch(function () {});
     if (target.matches("[data-bnfsj-add-to-cart]"))
@@ -272,11 +304,13 @@ export function initialize(root, config) {
     selection: selection,
     quantity: quantity,
     actions: actions,
+    bundle: bundle,
     destroy: function () {
       listeners.splice(0).forEach(function (remove) {
         remove();
       });
       selection.destroy();
+      bundle.destroy();
       destroyGallery(root);
       if (restoreSelection) restoreSelection();
       previousActions.forEach(function (entry) {

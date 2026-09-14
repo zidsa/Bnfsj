@@ -6,6 +6,7 @@ export function createActionController(options) {
   var quantity = options.quantity;
   var getSdk = options.getSdk;
   var global = options.global || window;
+  var bundle = options.bundle || null;
   var waitForSelection =
     options.waitForSelection ||
     function () {
@@ -40,7 +41,8 @@ export function createActionController(options) {
   function cartPayload() {
     var input = root.querySelector("#product-quantity");
     quantity.set(input ? input.value : 1);
-    return { form_id: "product-form" };
+    var payload = { form_id: "product-form" };
+    return bundle ? bundle.apply(payload) : payload;
   }
   function submitCart(checkout) {
     return lock(function () {
@@ -50,6 +52,7 @@ export function createActionController(options) {
         if (!zid || !zid.cart || !zid.cart.addProduct) return false;
         return waitForSelection().then(function () {
           if (!available(getSelected())) return false;
+          if (bundle && bundle.blocked()) return false;
           return zid.cart
             .addProduct(cartPayload(), { showErrorNotification: true })
             .then(function (result) {

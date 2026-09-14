@@ -1,4 +1,5 @@
-<section section-id="{{ sectionId }}" class="product products-details-page bnfsj-section bnfsj-product bnfsj-product-section" data-bnfsj-product>
+{% set is_dynamic_bundle = product.product_class == 'dynamic_bundle' %}
+<section section-id="{{ sectionId }}" class="product products-details-page bnfsj-section bnfsj-product bnfsj-product-section" data-bnfsj-product{% if is_dynamic_bundle %} data-bnfsj-bundle{% endif %}>
   <div class="container pb-3 bnfsj-container">
     <div class="products-details">
       <div class="row">
@@ -41,8 +42,8 @@
           <form id="product-form" class="bnfsj-product-form">
             <input id="product-id" type="hidden" value="{{ product.selected_product.id }}">
             <div class="size-box">
-              {% include 'components/product-options.jinja' %}
-              {% if product.has_fields %}
+                {% include 'components/product-options.jinja' %}
+              {% if product.custom_input_fields %}
                 <div class="border-product bnfsj-product-divider"></div>
                 {% include 'vitrin:products/custom_input_fields.jinja' %}
               {% endif %}
@@ -50,8 +51,18 @@
             {% include 'components/product-actions.jinja' %}
             {% include 'components/product-stock-alert.jinja' %}
           </form>
+
+          {# Platform bundle kit. It reports selections on vitrin:bundle-selections:updated,
+             which gates the purchase buttons and adds sub_items to the cart payload. #}
+          {% if is_dynamic_bundle %}
+            <div class="bnfsj-product-bundle" data-bnfsj-bundle-selections>
+              {% include 'vitrin:products/bundle-products.jinja' %}
+            </div>
+          {% endif %}
         </div>
       </div>
+        {% include 'vitrin:products/grouped-product.jinja' %}
+
     </div>
   </div>
 </section>
