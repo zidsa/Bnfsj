@@ -4,9 +4,10 @@ Date: 2026-09-10. Scope: two demonstration pages in a testing environment.
 
 ## Source and package
 
-- 12 Python tests pass, including real composition of all 18 section types in
+- 13 Python tests pass, including real composition of all 18 section types in
   Arabic and English, arbitrary IDs/order, repeated countdowns, hidden sections,
-  absent images, grouped defaults, and zero radius.
+  absent images, grouped defaults, zero radius, and an unrelated product without
+  variants in both languages.
 - 18 JavaScript assertions across four test files pass. Coverage includes
   inventory limits, newest-response selection, failed lookup blocking, retry,
   debounced custom fields with a waiting cart action, double-submit prevention,
@@ -22,7 +23,8 @@ Date: 2026-09-10. Scope: two demonstration pages in a testing environment.
 
 Local validation stubs native Vitrin partials. It does not replace the deployed
 SDK/editor/checkout verification below. The local product fixture is Madar, even
-when rendering another page's settings.
+when rendering another page's settings, unless `--fixture` supplies another
+product. Its identifiers are synthetic and its demo images are bundled locally.
 
 ## Page configurations
 
