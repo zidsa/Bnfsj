@@ -1,0 +1,9 @@
+<div class="bnfsj-quantity input-group w-auto d-flex" data-bnfsj-quantity>
+  <button class="btn btn-link link-secondary text-decoration-none" type="button" data-bnfsj-quantity-decrease aria-label="{{ _('Decrease quantity') }}">
+    <img class="plus-minus-svg" src="{{ 'u_minus.svg' | asset_url }}" loading="lazy" alt="">
+  </button>
+  <input type="number" inputmode="numeric" min="1" max="100" required value="1" pattern="[0-9]{1,3}" class="form-control border-0 fs-4 bg-transparent text-center form-control-no-focus input-quantity-width" id="product-quantity-floating" aria-label="{{ _('Quantity') }}">
+  <button class="btn btn-link link-secondary text-decoration-none" type="button" data-bnfsj-quantity-increase aria-label="{{ _('Increase quantity') }}">
+    <img class="plus-minus-svg" src="{{ 'u_plus.svg' | asset_url }}" loading="lazy" alt="">
+  </button>
+</div>

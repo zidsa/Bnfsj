@@ -1,0 +1,299 @@
+[
+  {
+    "path": "templates/landing.jinja",
+    "settings": {
+      "components": {
+        "ar": [
+          {
+            "display": true,
+            "settings": {
+              "header_logo": "",
+              "header_logo_mobile": ""
+            },
+            "template": "sections/header.jinja",
+            "section_id": "4e33c4a6-4f8f-5068-a9d9-58364ba77828"
+          },
+          {
+            "display": true,
+            "settings": {
+              "color": "",
+              "description": "مدار — انحناءات بسيطة، حضور مختلف.",
+              "background_color": ""
+            },
+            "template": "sections/ad-section.jinja",
+            "section_id": "415e0883-031e-5677-8a28-d13f2dfb83e2",
+            "custom_name": "مدار"
+          },
+          {
+            "display": true,
+            "settings": {
+              "title": "",
+              "description": ""
+            },
+            "template": "sections/product-section.jinja",
+            "section_id": "3a16255e-2067-501f-99b6-1d6c22b790dd"
+          },
+          {
+            "display": true,
+            "settings": {
+              "color": "",
+              "features": [
+                {
+                  "text": "تصميم حلقي",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cellipse%20cx%3D%2224%22%20cy%3D%2227%22%20rx%3D%2213%22%20ry%3D%2216%22%2F%3E%3Cpath%20d%3D%22M20%2011V5h8v6%22%2F%3E%3Cellipse%20cx%3D%2224%22%20cy%3D%2227%22%20rx%3D%226%22%20ry%3D%229%22%2F%3E%3C%2Fsvg%3E"
+                },
+                {
+                  "text": "رملي أو لافندر",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2224%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2224%22%20r%3D%2210%22%2F%3E%3C%2Fsvg%3E"
+                },
+                {
+                  "text": "صور لكل لون",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%226%22%20y%3D%228%22%20width%3D%2236%22%20height%3D%2232%22%20rx%3D%224%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2218%22%20r%3D%223%22%2F%3E%3Cpath%20d%3D%22m7%2033%2011-11%209%208%206-5%209%2010%22%2F%3E%3C%2Fsvg%3E"
+                },
+                {
+                  "text": "كمية على اختيارك",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%226%22%20y%3D%2212%22%20width%3D%2236%22%20height%3D%2224%22%20rx%3D%226%22%2F%3E%3Cpath%20d%3D%22M12%2024h8m8%200h8m-4-4v8%22%2F%3E%3C%2Fsvg%3E"
+                }
+              ],
+              "background_color": ""
+            },
+            "template": "sections/features-section.jinja",
+            "section_id": "4e66aff0-bf36-58c9-a330-960e12ba6fd2",
+            "custom_name": "لمحة سريعة"
+          },
+          {
+            "meta": {},
+            "display": true,
+            "settings": {
+              "description": "اختر لون مدار المناسب لك."
+            },
+            "template": "sections/text-section.jinja",
+            "section_id": "27de9c37-831a-5380-8edc-64fea1938f5f"
+          },
+          {
+            "display": true,
+            "settings": {
+              "title": "",
+              "gallery": [
+                {
+                  "url": "#product-form",
+                  "image": "/examples/madar/images/sand.png"
+                },
+                {
+                  "url": "#product-form",
+                  "image": "/examples/madar/images/lavender.png"
+                }
+              ]
+            },
+            "template": "sections/ggallery.jinja",
+            "section_id": "6c3a9921-3c95-5d82-bb04-ab3021bcde3d",
+            "custom_name": "ألوان مدار"
+          },
+          {
+            "display": true,
+            "settings": {
+              "features": [
+                {
+                  "image": "/examples/madar/images/lavender.png",
+                  "title": "تفاصيل بسيطة، شخصية مختلفة.",
+                  "description": "<p>خطوط مستديرة ومساحة مفتوحة في المنتصف تمنح مدار شكله المميز. اختر الرملي الهادئ أو اللافندر، وشاهد اللون الذي ينسجم مع ذوقك.</p><p class=\"bnfsj-note\">صور لتصميم تجريبي؛ وليست مواصفات تصنيع.</p>"
+                }
+              ]
+            },
+            "template": "sections/features-section-3.jinja",
+            "section_id": "3b1689a4-92be-5200-afe0-be523e754595",
+            "custom_name": "تفاصيل التصميم"
+          },
+          {
+            "display": true,
+            "settings": {
+              "hide": false
+            },
+            "template": "sections/payments.jinja",
+            "section_id": "6ff93d0b-744d-54ec-a92b-d0e0ee257a72"
+          },
+          {
+            "display": true,
+            "settings": {
+              "hide": false
+            },
+            "template": "sections/social-media.jinja",
+            "section_id": "4dc057f0-d9cf-51aa-84e1-b8899ff15910"
+          },
+          {
+            "display": true,
+            "settings": {
+              "color": "",
+              "links": [],
+              "copyrights": "جميع الحقوق محفوظة.",
+              "background_color": ""
+            },
+            "template": "sections/copywrites.jinja",
+            "section_id": "b2f54302-c5fd-5eea-87d6-1042381e6141"
+          }
+        ],
+        "en": [
+          {
+            "display": true,
+            "settings": {
+              "header_logo": "",
+              "header_logo_mobile": ""
+            },
+            "template": "sections/header.jinja",
+            "section_id": "4e33c4a6-4f8f-5068-a9d9-58364ba77828"
+          },
+          {
+            "display": true,
+            "settings": {
+              "color": "",
+              "description": "Madar — simple curves, a distinct presence.",
+              "background_color": ""
+            },
+            "template": "sections/ad-section.jinja",
+            "section_id": "415e0883-031e-5677-8a28-d13f2dfb83e2",
+            "custom_name": "Madar"
+          },
+          {
+            "display": true,
+            "settings": {
+              "title": "",
+              "description": ""
+            },
+            "template": "sections/product-section.jinja",
+            "section_id": "3a16255e-2067-501f-99b6-1d6c22b790dd"
+          },
+          {
+            "display": true,
+            "settings": {
+              "color": "",
+              "features": [
+                {
+                  "text": "A loop-shaped design",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cellipse%20cx%3D%2224%22%20cy%3D%2227%22%20rx%3D%2213%22%20ry%3D%2216%22%2F%3E%3Cpath%20d%3D%22M20%2011V5h8v6%22%2F%3E%3Cellipse%20cx%3D%2224%22%20cy%3D%2227%22%20rx%3D%226%22%20ry%3D%229%22%2F%3E%3C%2Fsvg%3E"
+                },
+                {
+                  "text": "Sand or Lavender",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2224%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2224%22%20r%3D%2210%22%2F%3E%3C%2Fsvg%3E"
+                },
+                {
+                  "text": "Images for each color",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%226%22%20y%3D%228%22%20width%3D%2236%22%20height%3D%2232%22%20rx%3D%224%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2218%22%20r%3D%223%22%2F%3E%3Cpath%20d%3D%22m7%2033%2011-11%209%208%206-5%209%2010%22%2F%3E%3C%2Fsvg%3E"
+                },
+                {
+                  "text": "Your choice of quantity",
+                  "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%226%22%20y%3D%2212%22%20width%3D%2236%22%20height%3D%2224%22%20rx%3D%226%22%2F%3E%3Cpath%20d%3D%22M12%2024h8m8%200h8m-4-4v8%22%2F%3E%3C%2Fsvg%3E"
+                }
+              ],
+              "background_color": ""
+            },
+            "template": "sections/features-section.jinja",
+            "section_id": "4e66aff0-bf36-58c9-a330-960e12ba6fd2",
+            "custom_name": "At a glance"
+          },
+          {
+            "display": true,
+            "settings": {
+              "description": "Choose your shade of Madar."
+            },
+            "template": "sections/text-section.jinja",
+            "section_id": "27de9c37-831a-5380-8edc-64fea1938f5f"
+          },
+          {
+            "display": true,
+            "settings": {
+              "title": "",
+              "gallery": [
+                {
+                  "url": "#product-form",
+                  "image": "/examples/madar/images/sand.png"
+                },
+                {
+                  "url": "#product-form",
+                  "image": "/examples/madar/images/lavender.png"
+                }
+              ]
+            },
+            "template": "sections/ggallery.jinja",
+            "section_id": "6c3a9921-3c95-5d82-bb04-ab3021bcde3d",
+            "custom_name": "Madar colors"
+          },
+          {
+            "display": true,
+            "settings": {
+              "features": [
+                {
+                  "image": "/examples/madar/images/lavender.png",
+                  "title": "Simple details. Distinct character.",
+                  "description": "<p>Rounded lines and an open center give Madar its distinctive shape. Explore calm Sand or Lavender and choose the color that feels like you.</p><p class=\"bnfsj-note\">Images show a demonstration design, not manufacturing specifications.</p>"
+                }
+              ]
+            },
+            "template": "sections/features-section-3.jinja",
+            "section_id": "3b1689a4-92be-5200-afe0-be523e754595",
+            "custom_name": "Design details"
+          },
+          {
+            "display": true,
+            "settings": {
+              "hide": false
+            },
+            "template": "sections/payments.jinja",
+            "section_id": "6ff93d0b-744d-54ec-a92b-d0e0ee257a72"
+          },
+          {
+            "display": true,
+            "settings": {
+              "hide": false
+            },
+            "template": "sections/social-media.jinja",
+            "section_id": "4dc057f0-d9cf-51aa-84e1-b8899ff15910"
+          },
+          {
+            "display": true,
+            "settings": {
+              "color": "",
+              "links": [],
+              "copyrights": "All rights reserved.",
+              "background_color": ""
+            },
+            "template": "sections/copywrites.jinja",
+            "section_id": "b2f54302-c5fd-5eea-87d6-1042381e6141"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "path": "layout.jinja",
+    "settings": {
+      "ar": {
+        "font_family": "IBM+Plex+Sans+Arabic",
+        "theme_primary": "#3C1C54",
+        "theme_primary_foreground": "#FFFFFF",
+        "theme_background": "#FFFFFF",
+        "theme_foreground": "#1F0433",
+        "theme_surface": "#F5F4F6",
+        "theme_border": "#E8E4EB",
+        "theme_muted": "#6B6173",
+        "theme_radius": 12,
+        "layout_width": 1140,
+        "layout_spacing": 48,
+        "custom_css": ""
+      },
+      "en": {
+        "font_family": "IBM+Plex+Sans+Arabic",
+        "theme_primary": "#3C1C54",
+        "theme_primary_foreground": "#FFFFFF",
+        "theme_background": "#FFFFFF",
+        "theme_foreground": "#1F0433",
+        "theme_surface": "#F5F4F6",
+        "theme_border": "#E8E4EB",
+        "theme_muted": "#6B6173",
+        "theme_radius": 12,
+        "layout_width": 1140,
+        "layout_spacing": 48,
+        "custom_css": ""
+      }
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{% if not settings.hide %}
+  <section section-id="{{ sectionId }}" class="bnfsj-payments bnfsj-container">
+    <div class="logistics-pay-icons d-flex flex-wrap justify-content-center">
+      {% for method in store.settings.checkout.payment_methods or [] %}
+        {% if method.icon %}
+          {% set name = method.name if method.name is string else safeget(method.name, session.lang, _('Payment method')) %}
+          <a href="/shipping-and-payment"><img src="{{ method.icon }}" loading="lazy" alt="{{ name | default(_('Payment method'), true) }}" height="21"></a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

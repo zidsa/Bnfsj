@@ -1,0 +1,30 @@
+{
+  "ar": {
+    "font_family": "IBM+Plex+Sans+Arabic",
+    "theme_primary": "#3C1C54",
+    "theme_primary_foreground": "#FFFFFF",
+    "theme_background": "#FFFFFF",
+    "theme_foreground": "#1F0433",
+    "theme_surface": "#F5F4F6",
+    "theme_border": "#E8E4EB",
+    "theme_muted": "#6B6173",
+    "theme_radius": 12,
+    "layout_width": 1140,
+    "layout_spacing": 48,
+    "custom_css": ""
+  },
+  "en": {
+    "font_family": "IBM+Plex+Sans+Arabic",
+    "theme_primary": "#3C1C54",
+    "theme_primary_foreground": "#FFFFFF",
+    "theme_background": "#FFFFFF",
+    "theme_foreground": "#1F0433",
+    "theme_surface": "#F5F4F6",
+    "theme_border": "#E8E4EB",
+    "theme_muted": "#6B6173",
+    "theme_radius": 12,
+    "layout_width": 1140,
+    "layout_spacing": 48,
+    "custom_css": ""
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "section_id": "uuid",
+  "template": "sections/ad-section.jinja",
+  "name": {
+    "ar": "نص اعلاني",
+    "en": "Text"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "description",
+      "type": "text",
+      "label": {
+        "ar": "النص",
+        "en": "Text"
+      }
+    },
+    {
+      "id": "color",
+      "type": "color",
+      "label": {
+        "ar": "لون النص",
+        "en": "Color"
+      }
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": {
+        "ar": "لون الخلفية",
+        "en": "Background Color"
+      }
+    }
+  ]
+}

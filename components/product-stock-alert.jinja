@@ -1,0 +1,23 @@
+{# Out-of-stock notification form. Selector names are part of the runtime contract. #}
+<div class="section-out-of-stock-notify-me bnfsj-stock-alert{% if product.selected_product.in_stock %} d-none{% else %} d-block{% endif %}">
+  <div class="border-product bnfsj-product-divider"></div>
+  <div>
+    <h4 class="product-title">{{ _('Product is out of stock') }}</h4>
+    <input type="hidden" class="send-notify-product-id" value="{{ product.selected_product.id }}">
+    <div class="form-group form-notify-me">
+      <h4>{{ _('Notify me when available') }}</h4>
+      <input class="form-control send-notify-name" type="text" placeholder="{{ _('Name') }}" aria-label="{{ _('Name') }}">
+      <input class="form-control send-notify-email" type="email" placeholder="{{ _('Email') }}" aria-label="{{ _('Email') }}">
+      <div class="d-flex form-notify-me-phone-row">
+        <input class="form-control send-notify-country-key" type="number" value="966" placeholder="966" maxlength="4" aria-label="{{ _('Country code') }}">
+        <input class="form-control send-notify-phone" type="number" placeholder="{{ _('Mobile number') }}" maxlength="10" aria-label="{{ _('Mobile number') }}">
+      </div>
+      <div class="form-notify-me-submit-button-row">
+        <button type="button" class="btn btn-primary btn-send-notify" data-bnfsj-stock-alert>
+          <img class="send-notify-progress d-none" src="{{ 'spinner.gif' | asset_url }}" width="15" height="15" alt="">
+          {{ _('Send') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

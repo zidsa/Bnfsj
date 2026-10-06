@@ -1,0 +1,72 @@
+{% set is_dynamic_bundle = product.product_class == 'dynamic_bundle' %}
+<section section-id="{{ sectionId }}"
+         class="product products-details-page bnfsj-section bnfsj-product bnfsj-product-section"
+         data-bnfsj-product{% if is_dynamic_bundle %} data-bnfsj-bundle{% endif %}>
+    <div class="container pb-3 bnfsj-container">
+        <div class="products-details">
+            <div class="row">
+                <div class="col-lg-6 order-md-2">
+                    {% include 'components/product-gallery.jinja' %}
+                </div>
+
+                <div class="col-lg-6 order-md-1 col-product-info{% if product.selected_product.images | length <= 1 %} col-product-info-single-image{% endif %}">
+                    <section class="product-headline-description bnfsj-product-summary">
+                        {% if product.badge %}
+                            <span class="badge-name ticket">
+                <span class="gift-icon" aria-hidden="true"><img src="{{ 'gift_icon.png' | asset_url }}" width="14"
+                                                                height="15" alt=""></span>
+                <span class="text-ticket">{{ safeget(product.badge.body, session.lang, '') }}</span>
+              </span>
+                        {% endif %}
+
+                        {% if settings.title %}
+                            <h1 class="pb-3 product-headline bnfsj-heading">{{ settings.title }}</h1>
+                        {% else %}
+                            <h1 class="pb-3 product-headline bnfsj-heading">{{ product.name | safe }}</h1>
+                        {% endif %}
+
+                        {% if settings.description %}
+                            <div class="pb-4 description description-wrapper bnfsj-richtext">{{ settings.description | safe }}</div>
+                            {% elif product.short_description %}
+                            <div class="pb-4 description description-wrapper bnfsj-richtext">{{ product.short_description | safe }}</div>
+                        {% endif %}
+
+                        <div class="d-flex bnfsj-product-price bnfsj-product-price-row">
+                            <div class="d-flex bnfsj-product-price-group">
+                                <h2 class="product-formatted-price theme-text-primary">{% if product.selected_product.formatted_sale_price %}{{ product.selected_product.formatted_sale_price }}{% else %}{{ product.selected_product.formatted_price }}{% endif %}</h2>
+                                <p class="price-discount-wrapper">
+                                    <del class="product-formatted-price-old">{% if product.selected_product.formatted_sale_price %}{{ product.selected_product.formatted_price }}{% endif %}</del>
+                                    <span class="product-formatted-price-discount"
+                                          data-discount-label="{{ _('Discount') }}">{% if product.selected_product.formatted_sale_price %}{{ _('Discount') }} {{ product.discount_percentage }}%{% endif %}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <form id="product-form" class="bnfsj-product-form">
+                        <input id="product-id" type="hidden" value="{{ product.selected_product.id }}">
+                        <div class="size-box">
+                            {% include 'components/product-options.jinja' %}
+                            {% if product.custom_input_fields %}
+                                <div class="border-product bnfsj-product-divider"></div>
+                                {% include 'vitrin:products/custom_input_fields.jinja' %}
+                            {% endif %}
+                        </div>
+                        {% include 'components/product-actions.jinja' %}
+                        {% include 'components/product-stock-alert.jinja' %}
+                    </form>
+
+                    {# Platform bundle kit. It reports selections on vitrin:bundle-selections:updated,
+             which gates the purchase buttons and adds sub_items to the cart payload. #}
+                    {% if is_dynamic_bundle %}
+                        <div class="bnfsj-product-bundle" data-bnfsj-bundle-selections>
+                            {% include 'vitrin:products/bundle-products.jinja' %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% include 'vitrin:products/grouped-product.jinja' %}
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+{# A dynamic bundle starts blocked: the runtime releases the controls once the
+   platform bundle kit reports a complete selection. The inline pointer-events
+   lock is the enforcement, because it survives a stale cached runtime that
+   would otherwise clear the disabled attribute. #}
+{% set is_dynamic_bundle = product.product_class == 'dynamic_bundle' %}
+<div class="buying-buttons{% if not product.selected_product.in_stock %} d-none{% endif %}" data-bnfsj-purchase-bar>
+  <div class="sticky floating-div" id="floatBtn2">
+    <div class="container z-3 js-quantity-add-buttons bnfsj-container">
+      <div class="bnfsj-actions-row">
+        <div class="card border-0 flex-fill js-section-add-to-cart"{% if is_dynamic_bundle %} data-bnfsj-purchase-lock style="pointer-events:none;opacity:0.55"{% endif %}>
+          <button id="product-view-add-to-cart" type="button" data-bnfsj-buy-now class="btn btn-lg btn-primary w-100 bnfsj-button{% if is_dynamic_bundle %} disabled{% endif %}"{% if is_dynamic_bundle %} disabled{% endif %}>
+            <img class="add-to-cart-progress d-none" src="{{ 'spinner.gif' | asset_url }}" width="25" height="25" alt="">
+            <span class="px-1">{{ _('Buy now') }}</span>
+          </button>
+        </div>
+        {% include 'components/quantity-input.jinja' %}
+      </div>
+      {% set kit_config = {
+        "container_id": "apple_pay_quick_checkout_widget",
+        "kit_name": "apple_pay_quick_checkout",
+        "custom_config": {},
+        "use_window_styles": false,
+        "create_window_object": false
+      } %}
+      <div class="apple-pay-quick-checkout-btn col-12 col-sm-3 col-lg-auto mx-auto js-section-apple-pay-quick-checkout{% if is_dynamic_bundle %} d-none{% endif %}"{% if is_dynamic_bundle %} data-bnfsj-purchase-lock style="pointer-events:none;opacity:0.55"{% endif %}>
+        {% include "vitrin:checkout/apple-pay-quick-checkout.jinja" %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+{
+  "section_id": "uuid",
+  "template": "sections/features-section.jinja",
+  "name": {
+    "ar": "خصائص المنتج",
+    "en": "Features"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "features",
+      "type": "list",
+      "max_items": 4,
+      "info": {
+        "ar": "",
+        "en": ""
+      },
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": {
+            "ar": "النص",
+            "en": "text"
+          }
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Image"
+          },
+          "info": {
+            "ar": "ارفع صورة بحجم ٢٠٠ *٢٠٠ ",
+            "en": "This is an info text sample here"
+          }
+        }
+      ],
+      "label": {
+        "ar": "الصورة",
+        "en": "Picture"
+      }
+    },
+    {
+      "id": "color",
+      "type": "color",
+      "label": {
+        "ar": "لون النص",
+        "en": "Color"
+      }
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": {
+        "ar": "لون الخلفية",
+        "en": "Background Color"
+      }
+    }
+  ]
+}

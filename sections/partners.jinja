@@ -1,0 +1,16 @@
+<section section-id="{{ sectionId }}" class="bnfsj-section bnfsj-partners">
+  <div class="container section-slider-padding-space slider-container bnfsj-container">
+    <h2 class="section-title theme-text-primary bnfsj-heading">{{ settings.title }}</h2>
+    <div class="partners-slider-wrapper bnfsj-carousel-wrapper">
+      <div class="partners-slider s-slider" data-bnfsj-carousel="partners">
+        {% for store_partner in settings.store_partners or [] %}
+          <div class="partner-item">
+            <a href="{{ store_partner.url | default('#', true) }}" class="bnfsj-partner-link" aria-label="{{ store_partner.name | default(store_partner.title, true) }}">
+              <img loading="lazy" src="{{ image_url(store_partner.image, w=180, q=90, f='auto') }}" alt="{{ store_partner.name | default(store_partner.title, true) }}" class="bnfsj-partner-image">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

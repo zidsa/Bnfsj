@@ -1,0 +1,88 @@
+{
+  "section_id": "uuid",
+  "template": "sections/ggallery.jinja",
+  "name": {
+    "ar": "مجموعة الصور",
+    "en": "Gallery"
+  },
+  "icon": "fal fa-images",
+  "display": true,
+  "settings": [
+    {
+      "id": "image_fit",
+      "type": "select",
+      "label": {
+        "ar": "ملاءمة الصورة",
+        "en": "Image fit"
+      },
+      "default": "contain",
+      "options": [
+        {
+          "label": {
+            "ar": "احتواء",
+            "en": "Contain"
+          },
+          "value": "contain"
+        },
+        {
+          "label": {
+            "ar": "تغطية",
+            "en": "Cover"
+          },
+          "value": "cover"
+        }
+      ]
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "text"
+      }
+    },
+    {
+      "id": "gallery",
+      "type": "list",
+      "max_items": 8,
+      "info": {
+        "ar": "",
+        "en": "This is an info text sample here"
+      },
+      "settings": [
+        {
+          "id": "image",
+          "type": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Image"
+          },
+          "info": {
+            "ar": "ارفع صورة بحجم 750 * 750 ",
+            "en": "This is an info text sample here"
+          }
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": {
+            "ar": "الرابط",
+            "en": "Link"
+          }
+        },
+        {
+          "id": "alt",
+          "type": "text",
+          "label": {
+            "ar": "وصف الصورة",
+            "en": "Image description"
+          }
+        }
+      ],
+      "label": {
+        "ar": "الصورة",
+        "en": "Picture"
+      }
+    }
+  ]
+}

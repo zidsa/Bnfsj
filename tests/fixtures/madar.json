@@ -1,0 +1,99 @@
+{
+  "id": "demo-madar",
+  "name": "Madar loop vase — Demo",
+  "short_description": "A Banafsaj demonstration design for testing product options, interactive 3D and native cart. Demo inventory only. The model is a design concept, not manufacturing specifications. Do not complete a real order.",
+  "has_fields": false,
+  "options": [
+    {
+      "id": "demo-color",
+      "name": "Colors",
+      "choices": [
+        "Sand",
+        "Lavender"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "demo-madar-sand",
+      "name": "Madar loop vase — Demo / Sand",
+      "formatted_price": " SAR 129.00",
+      "formatted_sale_price": null,
+      "is_infinite": true,
+      "quantity": null,
+      "attributes": [
+        {
+          "id": "demo-attribute-sand",
+          "slug": "الألوان",
+          "name": "Colors",
+          "value": "Sand",
+          "type": "default",
+          "type_value": null,
+          "product_id": "demo-madar-sand",
+          "attribute_image_id": null,
+          "display_order": null,
+          "attribute_id": "demo-color",
+          "attribute_display_order": null,
+          "use_as_filter": false
+        }
+      ],
+      "images": [
+        {
+          "id": "demo-image-sand",
+          "image": {
+            "full_size": "/examples/madar/images/sand.png",
+            "medium": "/examples/madar/images/sand.png"
+          },
+          "alt_text": "Madar / sand — demo design / تصميم تجريبي",
+          "display_order": 1
+        }
+      ]
+    },
+    {
+      "id": "demo-madar-lavender",
+      "name": "Madar loop vase — Demo / Lavender",
+      "formatted_price": " SAR 129.00",
+      "formatted_sale_price": null,
+      "is_infinite": true,
+      "quantity": null,
+      "attributes": [
+        {
+          "id": "demo-attribute-lavender",
+          "slug": "الألوان",
+          "name": "Colors",
+          "value": "Lavender",
+          "type": "default",
+          "type_value": null,
+          "product_id": "demo-madar-lavender",
+          "attribute_image_id": null,
+          "display_order": null,
+          "attribute_id": "demo-color",
+          "attribute_display_order": null,
+          "use_as_filter": false
+        }
+      ],
+      "images": [
+        {
+          "id": "demo-image-lavender",
+          "image": {
+            "full_size": "/examples/madar/images/lavender.png",
+            "medium": "/examples/madar/images/lavender.png"
+          },
+          "alt_text": "Madar / lavender — demo design / تصميم تجريبي",
+          "display_order": 1
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "id": "demo-image-lavender",
+      "image": {
+        "full_size": "/examples/madar/images/lavender.png",
+        "medium": "/examples/madar/images/lavender.png"
+      },
+      "alt_text": "Madar / lavender — demo design / تصميم تجريبي",
+      "display_order": 1
+    }
+  ]
+}

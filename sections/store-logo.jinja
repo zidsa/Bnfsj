@@ -1,0 +1,11 @@
+{% if not settings.hide %}
+<div section-id="{{ sectionId }}" class="header bnfsj-section bnfsj-store-logo">   	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container justify-content-center align-items-center">
+    <a href="/" class="bnfsj-store-logo-link">
+      <img class="logo-big d-block" src="{% if settings.image %}{{ image_url(settings.image, w=420, q=90, f='auto') }}{% else %}{{ image_url(store.logo, w=420, q=90, f='auto') }}{% endif %}" alt="{{ store.name }}">
+    </a>
+  </div>
+</nav>
+
+</div>
+{% endif %}

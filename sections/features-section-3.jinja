@@ -1,0 +1,13 @@
+<section section-id="{{ sectionId }}" class="bnfsj-details bnfsj-container">
+  {% for feature in settings.features or [] %}
+    <article class="photos-block{% if not feature.image %} photos-block--text-only{% endif %}">
+      <div class="about-image">
+        {% if feature.title %}<h2 class="bnfsj-heading">{{ feature.title }}</h2>{% endif %}
+        {% if feature.description %}<div class="bnfsj-richtext">{{ feature.description | safe }}</div>{% endif %}
+      </div>
+      {% if feature.image %}
+        <div><img loading="lazy" class="image" src="{{ image_url(feature.image) }}" alt="{{ feature.title | default('') }}"></div>
+      {% endif %}
+    </article>
+  {% endfor %}
+</section>

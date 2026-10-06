@@ -1,0 +1,67 @@
+{
+  "section_id": "uuid",
+  "template": "sections/copywrites.jinja",
+  "name": {
+    "ar": "حقوق الحفظ",
+    "en": "Copyrights"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "copyrights",
+      "type": "text",
+      "label": {
+        "ar": "نص حقوق الحفظ",
+        "en": "copyrights text"
+      }
+    },
+    {
+      "id": "links",
+      "type": "list",
+      "max_items": 3,
+      "info": {
+        "ar": "",
+        "en": ""
+      },
+      "settings": [
+        {
+          "id": "text",
+          "type": "text",
+          "label": {
+            "ar": "النص",
+            "en": "text"
+          }
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": {
+            "ar": "الرابط",
+            "en": "Link"
+          }
+        }
+      ],
+      "label": {
+        "ar": "روابط مهمة",
+        "en": "Important links"
+      }
+    },
+    {
+      "id": "color",
+      "type": "color",
+      "label": {
+        "ar": "لون النص",
+        "en": "Color"
+      }
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": {
+        "ar": "لون الخلفية",
+        "en": "Background Color"
+      }
+    }
+  ]
+}

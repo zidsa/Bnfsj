@@ -1,0 +1,32 @@
+{
+  "section_id": "uuid",
+  "template": "sections/store-logo.jinja",
+  "name": {
+    "ar": "شعار المتجر",
+    "en": "Store logo"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "hide",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء",
+        "en": "Hide"
+      }
+    },
+    {
+      "id": "image",
+      "type": "image",
+      "label": {
+        "ar": "الصورة",
+        "en": "Image"
+      },
+      "info": {
+        "ar": "ارفع صورة بحجم 750 * 750 ",
+        "en": "This is an info text sample here"
+      }
+    }
+  ]
+}
