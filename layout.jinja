@@ -50,7 +50,7 @@
       <link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}">
     {% endif %}
     <link rel="stylesheet" href="{{ 'slick.css' | asset_url }}">
-    <link rel="stylesheet" href="{{ 'bnfsj.css?v=1.2.1' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'bnfsj.css' | asset_url }}">
     {% if user_custom_css %}<link rel="stylesheet" href="{{ user_custom_css }}">{% endif %}
     {% set custom_css = settings.custom_css | default(settings.general_settings_css, true) %}
     {% if custom_css %}<style>{{ custom_css | safe }}</style>{% endif %}
@@ -64,7 +64,7 @@
     <script src="{{ 'bootstrap.min.js' | asset_url }}"></script>
     <script src="{{ 'slick.min.js' | asset_url }}"></script>
     {% vitrin_body %}
-    <script defer src="{{ 'bnfsj-sections.js?v=1.2.0' | asset_url }}"></script>
+    <script defer src="{{ 'bnfsj-sections.js' | asset_url }}"></script>
     {% block footer_scripts %}{% endblock %}
   </body>
 </html>
