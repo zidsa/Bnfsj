@@ -7,3 +7,4 @@ dist/
 .env.*
 node_modules/
 test-results/
+.vitrin/
