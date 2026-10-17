@@ -53,6 +53,26 @@ def test_render_uses_sample_product_and_preset(tmp_path: Path) -> None:
     assert "\x01" not in rendered
 
 
+def test_render_uses_parent_images_when_variants_have_none(tmp_path: Path) -> None:
+    fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
+    for variant in fixture["variants"]:
+        variant["images"] = []
+    fixture["images"].append(fixture["images"][0])
+    fixture_path = tmp_path / "parent-images-only.json"
+    fixture_path.write_text(json.dumps(fixture), encoding="utf-8")
+
+    output = tmp_path / "landing.html"
+    report = validate(ROOT, fixture_path, output)
+    assert report.ok, report.errors
+    rendered = output.read_text(encoding="utf-8")
+    assert (
+        '<img src="/examples/madar/images/lavender.png" class="carousel-img"'
+        in rendered
+    )
+    assert '<div class="box-1-1 product-images-empty d-none">' in rendered
+    assert "col-product-info-single-image" not in rendered
+
+
 def test_render_accepts_an_unrelated_product_without_variants(tmp_path: Path) -> None:
     fixture = tmp_path / "simple-product.json"
     fixture.write_text(json.dumps({

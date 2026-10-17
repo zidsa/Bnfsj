@@ -151,7 +151,7 @@ export function initialize(root, config) {
         : "";
     quantity.updateLimit(value);
     updateAvailability(value);
-    renderGallery(root, value, root.ownerDocument);
+    renderGallery(root, value, root.ownerDocument, state());
     global.dispatchEvent(
       new global.CustomEvent("bnfsj:product:updated", { detail: value }),
     );
@@ -296,7 +296,7 @@ export function initialize(root, config) {
   if (initial) {
     initial.custom_fields_payload = customFieldsPayload();
     quantity.updateLimit(initial);
-    renderGallery(root, initial, root.ownerDocument);
+    renderGallery(root, initial, root.ownerDocument, state());
     updateAvailability(initial);
   }
   root.__bnfsjProductRuntime = {

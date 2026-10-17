@@ -222,9 +222,9 @@
     button.appendChild(span);
     return button.outerHTML;
   }
-  function renderGallery(root2, value, doc) {
+  function renderGallery(root2, value, doc, fallback) {
     doc = doc || root2.ownerDocument;
-    var images = (value && value.images || []).filter(function(image) {
+    var images = ((value && value.images && value.images.length ? value.images : fallback && fallback.images) || []).filter(function(image) {
       return Boolean(imageUrl(image, "full_size"));
     });
     var carousel = root2.querySelector("#product-images-slick");
@@ -726,7 +726,7 @@
         discount.textContent = value.formatted_sale_price ? (discount.dataset.discountLabel || "Discount") + " " + (value.discount_percentage || 0) + "%" : "";
       quantity.updateLimit(value);
       updateAvailability(value);
-      renderGallery(root2, value, root2.ownerDocument);
+      renderGallery(root2, value, root2.ownerDocument, state());
       global.dispatchEvent(
         new global.CustomEvent("bnfsj:product:updated", { detail: value })
       );
@@ -854,7 +854,7 @@
     if (initial) {
       initial.custom_fields_payload = customFieldsPayload();
       quantity.updateLimit(initial);
-      renderGallery(root2, initial, root2.ownerDocument);
+      renderGallery(root2, initial, root2.ownerDocument, state());
       updateAvailability(initial);
     }
     root2.__bnfsjProductRuntime = {

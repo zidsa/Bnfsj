@@ -9,7 +9,7 @@
                     {% include 'components/product-gallery.jinja' %}
                 </div>
 
-                <div class="col-lg-6 order-md-1 col-product-info{% if product.selected_product.images | length <= 1 %} col-product-info-single-image{% endif %}">
+                <div class="col-lg-6 order-md-1 col-product-info{% if (product.selected_product.images or product.images) | length <= 1 %} col-product-info-single-image{% endif %}">
                     <section class="product-headline-description bnfsj-product-summary">
                         {% if product.badge %}
                             <span class="badge-name ticket">

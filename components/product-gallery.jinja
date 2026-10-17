@@ -1,12 +1,13 @@
 {# Product gallery. IDs/classes are part of the bnfsj-product.js contract. #}
+{% set gallery_images = product.selected_product.images or product.images %}
 <div id="wrap" class="bnfsj-product-gallery">
   <div class="row">
     <div class="col-12 col-product-image-wrapper">
-      <div class="box-1-1 product-images-carousel product-images-carousel-init{% if product.selected_product.images | length <= 0 %} d-none{% endif %}">
+      <div class="box-1-1 product-images-carousel product-images-carousel-init{% if gallery_images | length <= 0 %} d-none{% endif %}">
         <div class="content">
           <div id="product-images" class="product-images slide gallery">
             <div id="product-images-slick" data-bnfsj-gallery>
-              {% for image in product.selected_product.images %}
+              {% for image in gallery_images %}
                 <div>
                   <div class="box-1-1">
                     <div class="content">
@@ -22,8 +23,8 @@
         </div>
       </div>
 
-      <div class="row lg-thumbs d-lg-flex product-images-carousel-thumbs{% if product.selected_product.images | length <= 1 %} d-none-important{% endif %}">
-        {% for image in product.selected_product.images %}
+      <div class="row lg-thumbs d-lg-flex product-images-carousel-thumbs{% if gallery_images | length <= 1 %} d-none-important{% endif %}">
+        {% for image in gallery_images %}
           <div class="col-3">
             <div class="box-1-1">
               <div class="content">
@@ -36,7 +37,7 @@
         {% endfor %}
       </div>
 
-      <div class="box-1-1 product-images-empty{% if product.selected_product.images | length > 0 %} d-none{% endif %}">
+      <div class="box-1-1 product-images-empty{% if gallery_images | length > 0 %} d-none{% endif %}">
         <div class="content">
           <div class="d-flex bnfsj-product-gallery-empty">
             <img src="{{ 'product-img.svg' | asset_url }}" width="100%" height="auto" alt="{{ product.name }}">

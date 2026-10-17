@@ -29,9 +29,13 @@ function arrow(doc, className, icon, label) {
   return button.outerHTML;
 }
 
-export function renderGallery(root, value, doc) {
+export function renderGallery(root, value, doc, fallback) {
   doc = doc || root.ownerDocument;
-  var images = ((value && value.images) || []).filter(function (image) {
+  var images = ((
+    value && value.images && value.images.length
+      ? value.images
+      : fallback && fallback.images
+  ) || []).filter(function (image) {
     return Boolean(imageUrl(image, "full_size"));
   });
   var carousel = root.querySelector("#product-images-slick");

@@ -62,6 +62,67 @@ function setup(selected, sdk, options = {}) {
   return { ...value, runtime };
 }
 
+test("gallery uses parent images when the selected variant has none", async () => {
+  const page = fixture();
+  page.dom.window.productObj.images = [
+    {
+      image: {
+        full_size: "https://x/a.png",
+        medium: "https://x/a-m.png",
+      },
+    },
+  ];
+  const variants = [
+    {
+      id: "variant-2",
+      in_stock: true,
+      images: [{ image: { full_size: "https://x/b.png" } }],
+    },
+    { id: "variant-1", in_stock: true, images: [] },
+  ];
+  const runtime = initialize(page.root, {
+    global: page.dom.window,
+    controlsRoot: page.dom.window.document,
+    sdkReady: () =>
+      Promise.resolve({
+        products: { getProductOptions: () => Promise.resolve(variants.shift()) },
+      }),
+  });
+
+  assert.equal(
+    page.root.querySelector("#product-images-slick img").src,
+    "https://x/a.png",
+  );
+  assert.equal(
+    page.root.querySelector(".product-images-empty").classList.contains("d-none"),
+    true,
+  );
+
+  const choices = page.root.querySelectorAll("#product-variants-options button");
+  choices[1].dispatchEvent(
+    new page.dom.window.MouseEvent("click", { bubbles: true }),
+  );
+  await runtime.selection.wait();
+  assert.equal(
+    page.root.querySelector("#product-images-slick img").src,
+    "https://x/b.png",
+  );
+
+  choices[0].dispatchEvent(
+    new page.dom.window.MouseEvent("click", { bubbles: true }),
+  );
+  await runtime.selection.wait();
+  assert.equal(
+    page.root.querySelector("#product-images-slick img").src,
+    "https://x/a.png",
+  );
+  assert.equal(
+    page.root.querySelector(".product-images-empty").classList.contains("d-none"),
+    true,
+  );
+  runtime.destroy();
+});
+
 test("public initializer handles native button choices and sticky quantity controls", async () => {
   const requests = [];
   const page = setup(undefined, {
