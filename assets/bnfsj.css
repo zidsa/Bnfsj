@@ -604,6 +604,7 @@
 .bnfsj-copyright {
   padding-block: 18px;
   color: var(--section-color, var(--bnfsj-foreground));
+  background-color: var(--section-background, transparent);
 }
 .bnfsj-copyright .privacy {
   gap: 20px;
@@ -626,7 +627,8 @@
   text-align: center;
 }
 .bnfsj-banner img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
   border-radius: var(--bnfsj-radius);
 }
@@ -836,7 +838,7 @@
     padding: 16px;
   }
   .bnfsj-details .image {
-    height: 320px;
+    height: auto;
     padding: 24px;
   }
   .bnfsj .logistics-pay-icons {
