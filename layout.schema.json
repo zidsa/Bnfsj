@@ -78,6 +78,24 @@
           "default": "#FFFFFF"
         },
         {
+          "id": "price",
+          "type": "color",
+          "label": {
+            "ar": "لون السعر",
+            "en": "Price"
+          },
+          "default": "#EDB900"
+        },
+        {
+          "id": "section_foreground",
+          "type": "color",
+          "label": {
+            "ar": "النص على الأقسام الملونة",
+            "en": "Text on colored sections"
+          },
+          "default": "#FFFFFF"
+        },
+        {
           "id": "background",
           "type": "color",
           "label": {

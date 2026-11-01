@@ -165,7 +165,7 @@
   font-weight: 700;
   line-height: normal;
   font-style: normal;
-  padding: 5rem;
+  padding: 48px;
 }
 .bnfsj-announcement {
   padding: 12px 20px;
@@ -180,7 +180,7 @@
 }
 .bnfsj-features,
 .bnfsj-countdown {
-  color: var(--section-color, #fff);
+  color: var(--section-color, var(--bnfsj-section-foreground));
   background-color: var(--section-background, var(--bnfsj-primary));
 }
 /* Product layout and the native form contract. */
@@ -212,7 +212,7 @@
   margin-block-start: 0;
 }
 .bnfsj .product-formatted-price {
-  color: #edb900;
+  color: var(--bnfsj-price);
   font-size: 28px;
   font-weight: 700;
   line-height: 1.6;
@@ -622,15 +622,17 @@
   max-height: 72px;
   object-fit: contain;
 }
-.bnfsj-banner {
+.bnfsj-section.bnfsj-banner {
   position: relative;
+  padding-block: 0;
   text-align: center;
 }
 .bnfsj-banner img {
+  display: block;
   width: auto;
   max-width: 100%;
   height: auto;
-  border-radius: var(--bnfsj-radius);
+  margin-inline: auto;
 }
 .bnfsj-banner .title {
   color: var(--bnfsj-primary);
@@ -786,6 +788,10 @@
   }
   .bnfsj-product {
     padding-block: 24px;
+  }
+  .bnfsj .headline {
+    padding: 24px;
+    font-size: 30px;
   }
   .bnfsj .product-headline {
     margin-top: 16px;

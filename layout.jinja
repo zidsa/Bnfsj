@@ -1,6 +1,6 @@
 {% set font_name = settings.font_family | default(settings.fonts_name | default('IBM+Plex+Sans+Arabic', true), true) %}
 {% set primary_color = settings.theme_primary | default(safeget(store, 'settings.branding.colors.primary', '#3C1C54'), true) %}
-{% set primary_text_color = settings.theme_primary_foreground | default(safeget(store, 'settings.branding.colors.text_of_primary_bg', '#FFFFFF'), true) %}
+{% set primary_text_color = settings.theme_primary_foreground | default(safeget(store, 'settings.branding.colors.on_primary', '#FFFFFF'), true) %}
 <!doctype html>
 <html class="no-js" lang="{{ session.lang }}" dir="{{ session.locale.language.direction }}">
   <head>
@@ -15,6 +15,8 @@
       :root {
         --bnfsj-primary: {{ primary_color }};
         --bnfsj-on-primary: {{ primary_text_color }};
+        --bnfsj-price: {{ settings.theme_price | default('#EDB900', true) }};
+        --bnfsj-section-foreground: {{ settings.theme_section_foreground | default('#FFFFFF', true) }};
         --bnfsj-background: {{ settings.theme_background | default('#FFFFFF', true) }};
         --bnfsj-foreground: {{ settings.theme_foreground | default('#1F0433', true) }};
         --bnfsj-surface: {{ settings.theme_surface | default('#F5F4F6', true) }};
