@@ -160,7 +160,7 @@
 .bnfsj .headline {
   margin: 0;
   text-align: center;
-  color: var(--bnfsj-primary);
+  color: var(--section-color, var(--bnfsj-primary));
   font-size: 44.627px;
   font-weight: 700;
   line-height: normal;
@@ -175,10 +175,12 @@
 
 
 }
-.bnfsj-announcement,
+.bnfsj-announcement {
+  background-color: var(--section-background, transparent);
+}
 .bnfsj-features,
 .bnfsj-countdown {
-  color: var(--section-color, var(--bnfsj-on-primary));
+  color: var(--section-color, #fff);
   background-color: var(--section-background, var(--bnfsj-primary));
 }
 /* Product layout and the native form contract. */
@@ -885,8 +887,8 @@
   grid-template-columns: minmax(0, 1fr);
 }
 .bnfsj-features--extended {
-  background: var(--bnfsj-primary);
-  box-shadow: inset 0 0 0 2000px var(--bnfsj-primary);
+  background: var(--section-background, var(--bnfsj-primary));
+  box-shadow: inset 0 0 0 2000px var(--section-background, var(--bnfsj-primary));
 }
 .bnfsj-slide-link {
   background: var(--section-background, var(--bnfsj-surface));
