@@ -859,9 +859,6 @@
   .bnfsj-copyright .privacy {
     gap: 12px;
   }
-  .bnfsj .ratio21_9 {
-    aspect-ratio: 4/3;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .bnfsj *,
