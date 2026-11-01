@@ -1,6 +1,8 @@
 <section section-id="{{ sectionId }}" class="bnfsj-section bnfsj-testimonials">
   <div class="container section-slider-padding-space slider-container bnfsj-container">
-    <h2 class="section-title theme-text-primary bnfsj-heading">{{ settings.title }}</h2>
+    {% if settings.title %}
+      <h2 class="section-title theme-text-primary bnfsj-heading">{{ settings.title }}</h2>
+    {% endif %}
     <div class="testimonials-slider-wrapper bnfsj-carousel-wrapper">
       <div class="testimonials-slider s-slider" data-bnfsj-carousel="testimonials" data-hide-dots="{{ 'true' if settings.hide_dots else 'false' }}">
         {% for testimonial in settings.testimonials or [] %}

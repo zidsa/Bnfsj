@@ -1,11 +1,15 @@
 <section section-id="{{ sectionId }}" class="features-section-2 more-specs bnfsj-section bnfsj-features bnfsj-features--extended"{% if settings.background_image or settings.background_color %} style="{% if settings.background_image %}--section-background-image: url({{ image_url(settings.background_image, w=2220, q=85, f='auto') }});{% endif %}{% if settings.background_color %}--section-background: {{ settings.background_color }};{% endif %}"{% endif %}>
-   <h2 class="why bnfsj-heading">{{ settings.title }}</h2>
+   {% if settings.title %}
+     <h2 class="why bnfsj-heading">{{ settings.title }}</h2>
+   {% endif %}
    <div class="elemnts bnfsj-container">
    {% for feature in settings.features or [] %}
     <div class="div1">
-         <div class="icon">
-           <img loading="lazy" src="{{ image_url(feature.image) }}" alt="{{ feature.text | default('') }}">
-         </div>
+         {% if feature.image %}
+           <div class="icon">
+             <img loading="lazy" src="{{ image_url(feature.image) }}" alt="{{ feature.text | default('') }}">
+           </div>
+         {% endif %}
          <div class="text-style max-w-8rem">
             {{ feature.text }}
          </div>

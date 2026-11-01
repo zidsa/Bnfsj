@@ -11,7 +11,7 @@
         {% if galler.image %}<div class="gallery-item col-6 {% if (loop.index0 == 2) or (loop.index0 == 3) %} bottom-row {% endif %}">
           <div class="box-1-1">
             <div class="content">
-              <a href="{{ galler.url | default('#', true) }}" class="bnfsj-gallery-link" aria-label="{{ galler.alt | default(_('View image'), true) }}">
+              {% if galler.url %}<a href="{{ galler.url }}" class="bnfsj-gallery-link" aria-label="{{ galler.alt | default(_('View image'), true) }}">{% endif %}
                 <img class="bnfsj-gallery-image"
                      srcset="
                              {{ image_url(galler.image, w=400, q=100, f='auto') }} 200w,
@@ -26,7 +26,7 @@
                      loading="lazy"
                      {% endif %}
                      alt="{{ galler.alt | default(settings.title, true) }}">
-              </a>
+              {% if galler.url %}</a>{% endif %}
             </div>
           </div>
         </div>{% endif %}

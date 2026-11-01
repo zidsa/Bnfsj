@@ -212,7 +212,7 @@
   margin-block-start: 0;
 }
 .bnfsj .product-formatted-price {
-  color: var(--bnfsj-primary);
+  color: #edb900;
   font-size: 28px;
   font-weight: 700;
   line-height: 1.6;
@@ -732,7 +732,7 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  color: var(--bnfsj-primary);
+  color: var(--bnfsj-foreground);
   background: var(--bnfsj-background);
   border: 1px solid var(--bnfsj-border);
   border-radius: 50%;
@@ -763,7 +763,7 @@
   font-size: 0;
 }
 .bnfsj .slick-dots .slick-active button {
-  background: var(--bnfsj-primary);
+  background: var(--bnfsj-foreground);
 }
 @media (max-width: 767px) {
   .bnfsj .container,
