@@ -115,8 +115,6 @@
       "settings": {
         "ar": {
           "font_family": "IBM+Plex+Sans+Arabic",
-          "theme_primary": "#3C1C54",
-          "theme_primary_foreground": "#FFFFFF",
           "theme_price": "#EDB900",
           "theme_section_foreground": "#FFFFFF",
           "theme_background": "#FFFFFF",
@@ -131,8 +129,6 @@
         },
         "en": {
           "font_family": "IBM+Plex+Sans+Arabic",
-          "theme_primary": "#3C1C54",
-          "theme_primary_foreground": "#FFFFFF",
           "theme_price": "#EDB900",
           "theme_section_foreground": "#FFFFFF",
           "theme_background": "#FFFFFF",

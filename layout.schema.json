@@ -65,8 +65,7 @@
           "label": {
             "ar": "اللون الأساسي",
             "en": "Primary"
-          },
-          "default": "#3C1C54"
+          }
         },
         {
           "id": "primary_foreground",
@@ -74,8 +73,7 @@
           "label": {
             "ar": "النص على اللون الأساسي",
             "en": "Text on primary"
-          },
-          "default": "#FFFFFF"
+          }
         },
         {
           "id": "price",
