@@ -1,0 +1,17 @@
+[project]
+name = "bnfsj-theme-tools"
+version = "0.1.0"
+description = "Build and validate the bnfsj native Jinja product landing page theme"
+requires-python = ">=3.11"
+dependencies = [
+    "Jinja2>=3.1,<4",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8,<10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

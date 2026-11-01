@@ -1,0 +1,147 @@
+{
+  "type": "default",
+  "name": {
+    "ar": "بنفسج — القالب الأصلي",
+    "en": "Bnfsj — Original"
+  },
+  "presets": [
+    {
+      "path": "templates/landing.jinja",
+      "settings": {
+        "components": {
+          "ar": [
+            {
+              "section_id": "4e33c4a6-4f8f-5068-a9d9-58364ba77828",
+              "template": "sections/header.jinja",
+              "settings": {
+                "header_logo": "",
+                "header_logo_mobile": ""
+              }
+            },
+            {
+              "section_id": "3a16255e-2067-501f-99b6-1d6c22b790dd",
+              "template": "sections/product-section.jinja",
+              "settings": {
+                "title": "",
+                "description": ""
+              }
+            },
+            {
+              "section_id": "27de9c37-831a-5380-8edc-64fea1938f5f",
+              "template": "sections/text-section.jinja",
+              "settings": {
+                "description": "اختر اللون والكمية المناسبين لك."
+              }
+            },
+            {
+              "section_id": "6ff93d0b-744d-54ec-a92b-d0e0ee257a72",
+              "template": "sections/payments.jinja",
+              "settings": {
+                "hide": false
+              }
+            },
+            {
+              "section_id": "4dc057f0-d9cf-51aa-84e1-b8899ff15910",
+              "template": "sections/social-media.jinja",
+              "settings": {
+                "hide": false
+              }
+            },
+            {
+              "section_id": "b2f54302-c5fd-5eea-87d6-1042381e6141",
+              "template": "sections/copywrites.jinja",
+              "settings": {
+                "copyrights": "جميع الحقوق محفوظة.",
+                "links": [],
+                "color": "#333333",
+                "background_color": "#ffffff"
+              }
+            }
+          ],
+          "en": [
+            {
+              "section_id": "4e33c4a6-4f8f-5068-a9d9-58364ba77828",
+              "template": "sections/header.jinja",
+              "settings": {
+                "header_logo": "",
+                "header_logo_mobile": ""
+              }
+            },
+            {
+              "section_id": "3a16255e-2067-501f-99b6-1d6c22b790dd",
+              "template": "sections/product-section.jinja",
+              "settings": {
+                "title": "",
+                "description": ""
+              }
+            },
+            {
+              "section_id": "27de9c37-831a-5380-8edc-64fea1938f5f",
+              "template": "sections/text-section.jinja",
+              "settings": {
+                "description": "Choose your preferred color and quantity."
+              }
+            },
+            {
+              "section_id": "6ff93d0b-744d-54ec-a92b-d0e0ee257a72",
+              "template": "sections/payments.jinja",
+              "settings": {
+                "hide": false
+              }
+            },
+            {
+              "section_id": "4dc057f0-d9cf-51aa-84e1-b8899ff15910",
+              "template": "sections/social-media.jinja",
+              "settings": {
+                "hide": false
+              }
+            },
+            {
+              "section_id": "b2f54302-c5fd-5eea-87d6-1042381e6141",
+              "template": "sections/copywrites.jinja",
+              "settings": {
+                "copyrights": "All rights reserved.",
+                "links": [],
+                "color": "#333333",
+                "background_color": "#ffffff"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "layout.jinja",
+      "settings": {
+        "ar": {
+          "font_family": "IBM+Plex+Sans+Arabic",
+          "theme_primary": "#3C1C54",
+          "theme_primary_foreground": "#FFFFFF",
+          "theme_background": "#FFFFFF",
+          "theme_foreground": "#1F0433",
+          "theme_surface": "#F5F4F6",
+          "theme_border": "#E8E4EB",
+          "theme_muted": "#6B6173",
+          "theme_radius": 12,
+          "layout_width": 1140,
+          "layout_spacing": 48,
+          "custom_css": ""
+        },
+        "en": {
+          "font_family": "IBM+Plex+Sans+Arabic",
+          "theme_primary": "#3C1C54",
+          "theme_primary_foreground": "#FFFFFF",
+          "theme_background": "#FFFFFF",
+          "theme_foreground": "#1F0433",
+          "theme_surface": "#F5F4F6",
+          "theme_border": "#E8E4EB",
+          "theme_muted": "#6B6173",
+          "theme_radius": 12,
+          "layout_width": 1140,
+          "layout_spacing": 48,
+          "custom_css": ""
+        }
+      }
+    }
+  ]
+}

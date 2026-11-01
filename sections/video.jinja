@@ -1,0 +1,15 @@
+<section section-id="{{ sectionId }}"
+     data-lg-scroll-offset="130"
+     data-md-scroll-offset="130"
+     data-sm-scroll-offset="94"
+     class="gallery-section container section-padding-space bnfsj-section bnfsj-video-section bnfsj-container">
+    {% if settings.title %}
+      <h2 class="section-title p-0 theme-text-primary bnfsj-heading">{{ settings.title }}</h2>
+    {% endif %}
+    <div class="video-container">
+      {% if settings.video %}<video class="bnfsj-video" width="100%" height="auto" loop playsinline {% if settings.controls %}controls{% endif %} {% if settings.autoplay %}autoplay muted{% endif %}>
+        <source src="{{ settings.video }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>{% endif %}
+    </div>
+</section>

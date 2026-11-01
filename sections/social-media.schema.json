@@ -1,0 +1,20 @@
+{
+  "section_id": "uuid",
+  "template": "sections/social-media.jinja",
+  "name": {
+    "ar": "الشبكات الاجتماعية",
+    "en": "Social media"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "hide",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء",
+        "en": "Hide"
+      }
+    }
+  ]
+}

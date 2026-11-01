@@ -1,0 +1,21 @@
+{# Variant choices. Keep ul name/data-option-id/index and choice value for SDK/runtime compatibility. #}
+<input id="product-parent-id" type="hidden" value="{{ product.id }}">
+{% if product.has_variants %}
+  <div id="product-variants-options" class="bnfsj-product-options">
+    {% for option in product.options %}
+      {% set option_index = loop.index0 %}
+      <div class="form-group bnfsj-product-option">
+        <span id="product-option-label-{{ option.id }}" class="bnfsj-option-label">{{ option.name }}</span>
+        <ul id="product-option-{{ option.id }}" name="{{ option.name }}" data-option-id="{{ option.id }}" index="{{ option_index }}" aria-labelledby="product-option-label-{{ option.id }}">
+          {% for choice in option.choices %}
+            <li value="{{ choice }}"{% if product.selected_product.attributes[option_index] and product.selected_product.attributes[option_index].value == choice %} class="active"{% endif %}>
+              <button type="button" value="{{ choice }}" data-bnfsj-option-choice aria-pressed="{{ 'true' if product.selected_product.attributes[option_index] and product.selected_product.attributes[option_index].value == choice else 'false' }}" onclick="bnfsjProductOptionClicked(event)">
+                {{ choice }}
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

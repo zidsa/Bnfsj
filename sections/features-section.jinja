@@ -1,0 +1,10 @@
+<section section-id="{{ sectionId }}" class="bnfsj-features" style="{% if settings.background_color %}--section-background: {{ settings.background_color }};{% endif %}{% if settings.color %}--section-color: {{ settings.color }};{% endif %}">
+  <div class="elemnts bnfsj-container">
+    {% for feature in settings.features or [] %}
+      <div class="div1">
+        {% if feature.image %}<div class="icon"><img loading="lazy" src="{{ image_url(feature.image) }}" alt=""></div>{% endif %}
+        {% if feature.text %}<p class="text-style">{{ feature.text }}</p>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

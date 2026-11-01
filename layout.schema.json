@@ -1,0 +1,191 @@
+{
+  "name": {
+    "ar": "إعدادات التخطيط",
+    "en": "Layout settings"
+  },
+  "groups": [
+    {
+      "id": "font",
+      "name": {
+        "ar": "الخط",
+        "en": "Typography"
+      },
+      "settings": [
+        {
+          "id": "family",
+          "type": "select",
+          "label": {
+            "ar": "نوع الخط",
+            "en": "Font family"
+          },
+          "default": "IBM+Plex+Sans+Arabic",
+          "options": [
+            {
+              "value": "IBM+Plex+Sans+Arabic",
+              "label": {
+                "ar": "IBM Plex Sans Arabic",
+                "en": "IBM Plex Sans Arabic"
+              }
+            },
+            {
+              "value": "Tajawal",
+              "label": {
+                "ar": "Tajawal",
+                "en": "Tajawal"
+              }
+            },
+            {
+              "value": "Cairo",
+              "label": {
+                "ar": "Cairo",
+                "en": "Cairo"
+              }
+            },
+            {
+              "value": "Roboto",
+              "label": {
+                "ar": "Roboto",
+                "en": "Roboto"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "theme",
+      "name": {
+        "ar": "الألوان والشكل",
+        "en": "Colors and shape"
+      },
+      "settings": [
+        {
+          "id": "primary",
+          "type": "color",
+          "label": {
+            "ar": "اللون الأساسي",
+            "en": "Primary"
+          },
+          "default": "#3C1C54"
+        },
+        {
+          "id": "primary_foreground",
+          "type": "color",
+          "label": {
+            "ar": "النص على اللون الأساسي",
+            "en": "Text on primary"
+          },
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "background",
+          "type": "color",
+          "label": {
+            "ar": "خلفية الصفحة",
+            "en": "Page background"
+          },
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "foreground",
+          "type": "color",
+          "label": {
+            "ar": "النص",
+            "en": "Text"
+          },
+          "default": "#1F0433"
+        },
+        {
+          "id": "surface",
+          "type": "color",
+          "label": {
+            "ar": "خلفية البطاقات",
+            "en": "Card background"
+          },
+          "default": "#F5F4F6"
+        },
+        {
+          "id": "border",
+          "type": "color",
+          "label": {
+            "ar": "الحدود",
+            "en": "Borders"
+          },
+          "default": "#E8E4EB"
+        },
+        {
+          "id": "muted",
+          "type": "color",
+          "label": {
+            "ar": "النص الثانوي",
+            "en": "Secondary text"
+          },
+          "default": "#6B6173"
+        },
+        {
+          "id": "radius",
+          "type": "range",
+          "label": {
+            "ar": "استدارة الزوايا",
+            "en": "Corner radius"
+          },
+          "default": 12,
+          "min": 0,
+          "max": 32,
+          "step": 2
+        }
+      ]
+    },
+    {
+      "id": "layout",
+      "name": {
+        "ar": "المسافات والعرض",
+        "en": "Spacing and width"
+      },
+      "settings": [
+        {
+          "id": "width",
+          "type": "range",
+          "label": {
+            "ar": "عرض المحتوى",
+            "en": "Content width"
+          },
+          "default": 1140,
+          "min": 960,
+          "max": 1440,
+          "step": 20
+        },
+        {
+          "id": "spacing",
+          "type": "range",
+          "label": {
+            "ar": "المسافة بين الأقسام",
+            "en": "Section spacing"
+          },
+          "default": 48,
+          "min": 24,
+          "max": 96,
+          "step": 8
+        }
+      ]
+    },
+    {
+      "id": "custom",
+      "name": {
+        "ar": "تنسيقات إضافية",
+        "en": "Custom styles"
+      },
+      "settings": [
+        {
+          "id": "css",
+          "type": "textarea",
+          "label": {
+            "ar": "تنسيقات CSS إضافية",
+            "en": "Additional CSS"
+          },
+          "default": ""
+        }
+      ]
+    }
+  ]
+}

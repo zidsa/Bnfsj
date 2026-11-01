@@ -1,0 +1,83 @@
+{
+  "section_id": "uuid",
+  "template": "sections/main-slider.jinja",
+  "name": {
+    "ar": "شرائح الصور",
+    "en": "Slider"
+  },
+  "icon": "fal fa-presentation",
+  "display": true,
+  "settings": [
+    {
+      "id": "slider",
+      "type": "list",
+      "max_items": 4,
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": {
+            "ar": "العنوان",
+            "en": "text"
+          }
+        },
+        {
+          "id": "des",
+          "type": "text",
+          "label": {
+            "ar": "النص",
+            "en": "text"
+          }
+        },
+        {
+          "id": "image",
+          "type": "image",
+          "label": {
+            "ar": "الصورة",
+            "en": "Image"
+          },
+          "info": {
+            "ar": "ارفع صورة بحجم 1400 * 600",
+            "en": "This is an info text sample here"
+          }
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": {
+            "ar": "الرابط",
+            "en": "Link"
+          }
+        }
+      ],
+      "label": {
+        "ar": "الصورة",
+        "en": "Picture"
+      }
+    },
+    {
+      "id": "hide_dots",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء النقاط",
+        "en": "Hide dots"
+      }
+    },
+    {
+      "id": "background_color",
+      "type": "color",
+      "label": {
+        "ar": "لون الخلفية",
+        "en": "Text color"
+      }
+    },
+    {
+      "id": "text_color",
+      "type": "color",
+      "label": {
+        "ar": "لون النص",
+        "en": "Text color"
+      }
+    }
+  ]
+}

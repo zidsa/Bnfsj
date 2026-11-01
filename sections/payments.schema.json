@@ -1,0 +1,20 @@
+{
+  "section_id": "uuid",
+  "template": "sections/payments.jinja",
+  "name": {
+    "ar": "خيارات الدفع",
+    "en": "Payments options"
+  },
+  "icon": "fal fa-sparkles",
+  "display": true,
+  "settings": [
+    {
+      "id": "hide",
+      "type": "checkbox",
+      "label": {
+        "ar": "إخفاء",
+        "en": "Hide"
+      }
+    }
+  ]
+}

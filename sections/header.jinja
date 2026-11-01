@@ -1,0 +1,24 @@
+{% set change_to_lang = 'ar' if session.lang == 'en' else 'en' %}
+{% set logo = settings.header_logo | default(store.logo, true) %}
+<header section-id="{{ sectionId }}" class="bnfsj-header">
+  <div class="bnfsj-container search-header-bar d-flex align-items-center">
+    <div class="header-logo">
+      <a href="/" class="bnfsj-header-logo-link">
+        {% if logo %}
+          <img class="image-logo{% if settings.header_logo_mobile %} d-none d-lg-block{% endif %}" src="{{ image_url(logo, h=175, q=90) }}" alt="{{ store.name }}">
+        {% else %}
+          <span>{{ store.name }}</span>
+        {% endif %}
+        {% if settings.header_logo_mobile %}
+          <img class="image-logo d-lg-none" src="{{ image_url(settings.header_logo_mobile, h=175, q=90) }}" alt="{{ store.name }}">
+        {% endif %}
+      </a>
+    </div>
+    <div class="language-currency">
+      <button type="button" class="language-btn" data-bnfsj-locale="{{ change_to_lang }}">
+        <span>{{ 'Ar' if change_to_lang == 'ar' else 'En' }}</span>
+        <span class="icon-language_white" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>

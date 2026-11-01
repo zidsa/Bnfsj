@@ -1,0 +1,10 @@
+<section section-id="{{ sectionId }}" class="bnfsj-copyright" style="{% if settings.background_color %}--section-background: {{ settings.background_color }};{% endif %}{% if settings.color %}--section-color: {{ settings.color }};{% endif %}">
+  <div class="bnfsj-container d-flex justify-content-between flex-column flex-md-row">
+    <div class="privacy d-flex justify-content-center flex-wrap">
+      {% for link in settings.links or [] %}
+        {% if link.url and link.text %}<a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.text }}</a>{% endif %}
+      {% endfor %}
+    </div>
+    <div>{{ settings.copyrights }}</div>
+  </div>
+</section>

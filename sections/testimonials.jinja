@@ -1,0 +1,21 @@
+<section section-id="{{ sectionId }}" class="bnfsj-section bnfsj-testimonials">
+  <div class="container section-slider-padding-space slider-container bnfsj-container">
+    <h2 class="section-title theme-text-primary bnfsj-heading">{{ settings.title }}</h2>
+    <div class="testimonials-slider-wrapper bnfsj-carousel-wrapper">
+      <div class="testimonials-slider s-slider" data-bnfsj-carousel="testimonials" data-hide-dots="{{ 'true' if settings.hide_dots else 'false' }}">
+        {% for testimonial in settings.testimonials or [] %}
+          <article class="testimonials-customer-card bg-transparent">
+            <div class="card-body">
+              <div class="d-flex">
+                <span class="icon-account_circle_black_24dp testimonials-customer-icon" aria-hidden="true"></span>
+                <h3 class="testimonials-customer-name">{{ testimonial.name }}</h3>
+                <p class="testimonials-customer-date">{{ testimonial.date }}</p>
+              </div>
+              <p class="testimonials-customer-text">{{ testimonial.text }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

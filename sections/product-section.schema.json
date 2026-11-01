@@ -1,0 +1,28 @@
+{
+  "template": "sections/product-section.jinja",
+  "name": {
+    "ar": "المنتج",
+    "en": "Product"
+  },
+  "icon": "box",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": {
+        "ar": "العنوان",
+        "en": "Title"
+      },
+      "default": ""
+    },
+    {
+      "id": "description",
+      "type": "textarea",
+      "label": {
+        "ar": "الوصف",
+        "en": "Description"
+      },
+      "default": ""
+    }
+  ]
+}

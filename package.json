@@ -1,0 +1,16 @@
+{
+  "name": "bnfsj-native-product-runtime",
+  "version": "1.0.10",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:runtime": "node scripts/build-runtime.mjs",
+    "pretest": "npm run build:runtime",
+    "test": "node --test tests/*.test.mjs",
+    "test:runtime": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.2",
+    "jsdom": "25.0.1"
+  }
+}
