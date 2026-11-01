@@ -14,11 +14,13 @@
         {% endif %}
       </a>
     </div>
-    <div class="language-currency">
-      <button type="button" class="language-btn" data-bnfsj-locale="{{ change_to_lang }}">
-        <span>{{ 'Ar' if change_to_lang == 'ar' else 'En' }}</span>
-        <span class="icon-language_white" aria-hidden="true"></span>
-      </button>
-    </div>
+    {% if store.languages | length > 1 %}
+      <div class="language-currency">
+        <button type="button" class="language-btn" data-bnfsj-locale="{{ change_to_lang }}">
+          <span>{{ 'Ar' if change_to_lang == 'ar' else 'En' }}</span>
+          <span class="icon-language_white" aria-hidden="true"></span>
+        </button>
+      </div>
+    {% endif %}
   </div>
 </header>

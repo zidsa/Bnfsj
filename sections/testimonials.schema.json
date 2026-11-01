@@ -13,7 +13,7 @@
       "type": "text",
       "label": {
         "ar": "العنوان",
-        "en": "text"
+        "en": "Title"
       }
     },
     {
@@ -46,7 +46,7 @@
           "type": "textarea",
           "label": {
             "ar": "النص",
-            "en": "text"
+            "en": "Text"
           }
         }
       ],

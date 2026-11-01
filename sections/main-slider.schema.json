@@ -18,7 +18,7 @@
           "type": "text",
           "label": {
             "ar": "العنوان",
-            "en": "text"
+            "en": "Title"
           }
         },
         {
@@ -26,7 +26,7 @@
           "type": "text",
           "label": {
             "ar": "النص",
-            "en": "text"
+            "en": "Text"
           }
         },
         {
@@ -38,7 +38,7 @@
           },
           "info": {
             "ar": "ارفع صورة بحجم 1400 * 600",
-            "en": "This is an info text sample here"
+            "en": "Upload an image sized 1400 × 600"
           }
         },
         {
@@ -68,7 +68,7 @@
       "type": "color",
       "label": {
         "ar": "لون الخلفية",
-        "en": "Text color"
+        "en": "Background color"
       }
     },
     {

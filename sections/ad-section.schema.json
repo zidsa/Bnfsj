@@ -3,7 +3,7 @@
   "template": "sections/ad-section.jinja",
   "name": {
     "ar": "نص اعلاني",
-    "en": "Text"
+    "en": "Promotional text"
   },
   "icon": "fal fa-sparkles",
   "display": true,

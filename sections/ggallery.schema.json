@@ -38,7 +38,7 @@
       "type": "text",
       "label": {
         "ar": "العنوان",
-        "en": "text"
+        "en": "Title"
       }
     },
     {
@@ -47,7 +47,7 @@
       "max_items": 8,
       "info": {
         "ar": "",
-        "en": "This is an info text sample here"
+        "en": ""
       },
       "settings": [
         {
@@ -59,7 +59,7 @@
           },
           "info": {
             "ar": "ارفع صورة بحجم 750 * 750 ",
-            "en": "This is an info text sample here"
+            "en": "Upload an image sized 750 × 750"
           }
         },
         {
