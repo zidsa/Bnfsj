@@ -44,7 +44,24 @@ export function renderGallery(root, value, doc, fallback) {
   var frame = root.querySelector(".product-images-carousel");
   if (!carousel || !thumbs || !frame || !empty) return;
   var jq = doc.defaultView?.jQuery;
-  if (jq && jq.fn && jq.fn.slick && jq(carousel).hasClass("slick-initialized"))
+  var slickReady = Boolean(jq && jq.fn && jq.fn.slick);
+  // Variants often share the product's images. Rebuilding Slick for an
+  // identical gallery is wasted work and, in Safari, can leave a slide
+  // wrapped below the track so it paints over the product details.
+  var signature = images
+    .map(function (image) {
+      return imageUrl(image, "full_size");
+    })
+    .join("\n");
+  if (
+    carousel.dataset.bnfsjGallerySignature === signature &&
+    (!slickReady || jq(carousel).hasClass("slick-initialized"))
+  ) {
+    if (slickReady && images.length) jq(carousel).slick("slickGoTo", 0, true);
+    return;
+  }
+  carousel.dataset.bnfsjGallerySignature = signature;
+  if (slickReady && jq(carousel).hasClass("slick-initialized"))
     jq(carousel).slick("unslick");
   carousel.replaceChildren();
   thumbs.replaceChildren();
@@ -78,7 +95,7 @@ export function renderGallery(root, value, doc, fallback) {
   frame.classList.toggle("d-none", !hasImages);
   empty.classList.toggle("d-none", hasImages);
   thumbs.classList.toggle("d-none-important", images.length <= 1);
-  if (hasImages && jq && jq.fn && jq.fn.slick) {
+  if (hasImages && slickReady) {
     var rtl = doc.documentElement.dir !== "ltr";
     var nextArrowClass = rtl
       ? "icon-keyboard_arrow_left"
@@ -105,5 +122,13 @@ export function renderGallery(root, value, doc, fallback) {
         doc.body.dataset.bnfsjPrevious || "Previous",
       ),
     });
+    // Re-measure once the browser has laid out the fresh slides; Safari can
+    // report stale widths during the synchronous init after a rebuild.
+    var raf = doc.defaultView && doc.defaultView.requestAnimationFrame;
+    if (raf)
+      raf.call(doc.defaultView, function () {
+        if (jq(carousel).hasClass("slick-initialized"))
+          jq(carousel).slick("setPosition");
+      });
   }
 }

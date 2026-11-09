@@ -233,7 +233,16 @@
     var frame = root2.querySelector(".product-images-carousel");
     if (!carousel || !thumbs || !frame || !empty) return;
     var jq = doc.defaultView?.jQuery;
-    if (jq && jq.fn && jq.fn.slick && jq(carousel).hasClass("slick-initialized"))
+    var slickReady = Boolean(jq && jq.fn && jq.fn.slick);
+    var signature = images.map(function(image) {
+      return imageUrl(image, "full_size");
+    }).join("\n");
+    if (carousel.dataset.bnfsjGallerySignature === signature && (!slickReady || jq(carousel).hasClass("slick-initialized"))) {
+      if (slickReady && images.length) jq(carousel).slick("slickGoTo", 0, true);
+      return;
+    }
+    carousel.dataset.bnfsjGallerySignature = signature;
+    if (slickReady && jq(carousel).hasClass("slick-initialized"))
       jq(carousel).slick("unslick");
     carousel.replaceChildren();
     thumbs.replaceChildren();
@@ -265,7 +274,7 @@
     frame.classList.toggle("d-none", !hasImages);
     empty.classList.toggle("d-none", hasImages);
     thumbs.classList.toggle("d-none-important", images.length <= 1);
-    if (hasImages && jq && jq.fn && jq.fn.slick) {
+    if (hasImages && slickReady) {
       var rtl = doc.documentElement.dir !== "ltr";
       var nextArrowClass = rtl ? "icon-keyboard_arrow_left" : "icon-keyboard_arrow_right";
       var prevArrowClass = rtl ? "icon-keyboard_arrow_right" : "icon-keyboard_arrow_left";
@@ -288,6 +297,12 @@
           doc.body.dataset.bnfsjPrevious || "Previous"
         )
       });
+      var raf = doc.defaultView && doc.defaultView.requestAnimationFrame;
+      if (raf)
+        raf.call(doc.defaultView, function() {
+          if (jq(carousel).hasClass("slick-initialized"))
+            jq(carousel).slick("setPosition");
+        });
     }
   }
 

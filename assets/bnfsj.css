@@ -259,6 +259,21 @@
 .bnfsj .product-images-carousel .slick-slide > div {
   height: 100%;
 }
+
+.bnfsj .product-images-carousel .slick-list {
+  height: auto;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.bnfsj .product-images-carousel:has(.slick-dots) {
+  margin-bottom: 32px;
+}
+
+.bnfsj .product-images-carousel .slick-dots li {
+  display: flex;
+  line-height: 0;
+}
 .bnfsj .image-link {
   display: block;
   width: 100%;
