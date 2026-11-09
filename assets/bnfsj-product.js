@@ -205,10 +205,15 @@
       return image.image[size] || image.image.full_size || image.image.medium || "";
     return image[size] || image.full_size || image.medium || "";
   }
+  function slickJQuery(carousel, doc) {
+    var jq = doc.defaultView?.jQuery;
+    if (!carousel.__bnfsjJQuery && jq?.fn?.slick) carousel.__bnfsjJQuery = jq;
+    return carousel.__bnfsjJQuery;
+  }
   function destroyGallery(root2) {
     var carousel = root2.querySelector("#product-images-slick");
-    var jq = root2.ownerDocument.defaultView?.jQuery;
-    if (carousel && jq?.fn?.slick && jq(carousel).hasClass("slick-initialized"))
+    var jq = carousel && slickJQuery(carousel, root2.ownerDocument);
+    if (jq && jq(carousel).hasClass("slick-initialized"))
       jq(carousel).slick("unslick");
   }
   function arrow(doc, className, icon, label) {
@@ -232,8 +237,8 @@
     var empty = root2.querySelector(".product-images-empty");
     var frame = root2.querySelector(".product-images-carousel");
     if (!carousel || !thumbs || !frame || !empty) return;
-    var jq = doc.defaultView?.jQuery;
-    if (jq && jq.fn && jq.fn.slick && jq(carousel).hasClass("slick-initialized"))
+    var jq = slickJQuery(carousel, doc);
+    if (jq && jq(carousel).hasClass("slick-initialized"))
       jq(carousel).slick("unslick");
     carousel.replaceChildren();
     thumbs.replaceChildren();
@@ -265,7 +270,7 @@
     frame.classList.toggle("d-none", !hasImages);
     empty.classList.toggle("d-none", hasImages);
     thumbs.classList.toggle("d-none-important", images.length <= 1);
-    if (hasImages && jq && jq.fn && jq.fn.slick) {
+    if (hasImages && jq) {
       var rtl = doc.documentElement.dir !== "ltr";
       var nextArrowClass = rtl ? "icon-keyboard_arrow_left" : "icon-keyboard_arrow_right";
       var prevArrowClass = rtl ? "icon-keyboard_arrow_right" : "icon-keyboard_arrow_left";
@@ -836,8 +841,8 @@
         );
       if (target.matches(".thumb-image-a")) {
         var carousel = root2.querySelector("#product-images-slick");
-        var jq = global.jQuery;
-        if (carousel && jq && jq.fn && jq.fn.slick)
+        var jq = carousel && slickJQuery(carousel, root2.ownerDocument);
+        if (jq)
           jq(carousel).slick(
             "slickGoTo",
             Number(target.getAttribute("data-index")) || 0,

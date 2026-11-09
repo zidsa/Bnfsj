@@ -410,3 +410,94 @@ test("bundled entry initializes in a classic script context", () => {
   assert.equal(page.root.querySelector("#product-quantity").value, "2");
   page.dom.window.bnfsjProduct.destroy();
 });
+
+test("gallery keeps its slider when another script replaces window.jQuery after load", async () => {
+  // Vitrin SDK's Apple Pay quick checkout injects code.jquery.com/jquery-3.7.1 on Apple Pay
+  // devices, which replaces the theme's jQuery (and its Slick plugin) on window (INCIDENT-15658).
+  const page = fixture();
+  page.dom.window.productObj.images = [
+    { image: { full_size: "https://x/a.png" } },
+    { image: { full_size: "https://x/b.png" } },
+  ];
+  const fakeJQuery = (withSlick) => {
+    const jq = (element) => ({
+      hasClass: (name) => element.classList.contains(name),
+      slick: withSlick
+        ? (options) => {
+            const track = element.querySelector(":scope > .slick-track");
+            if (options === "unslick" && track) {
+              element.replaceChildren(...track.children);
+              element.classList.remove("slick-initialized");
+            } else if (typeof options === "object") {
+              const built = element.ownerDocument.createElement("div");
+              built.className = "slick-track";
+              built.append(...element.children);
+              element.append(built);
+              element.classList.add("slick-initialized");
+            }
+          }
+        : undefined,
+    });
+    jq.fn = withSlick ? { slick: true } : {};
+    return jq;
+  };
+  page.dom.window.jQuery = fakeJQuery(true);
+  const runtime = initialize(page.root, {
+    global: page.dom.window,
+    controlsRoot: page.dom.window.document,
+    sdkReady: () =>
+      Promise.resolve({
+        products: {
+          getProductOptions: () => Promise.resolve({ id: "variant-2", in_stock: true, images: [] }),
+        },
+      }),
+  });
+  const carousel = page.root.querySelector("#product-images-slick");
+  assert.equal(carousel.querySelectorAll(":scope > .slick-track img").length, 2);
+
+  page.dom.window.jQuery = fakeJQuery(false);
+  page.root
+    .querySelectorAll("#product-variants-options button")[1]
+    .dispatchEvent(new page.dom.window.MouseEvent("click", { bubbles: true }));
+  await runtime.selection.wait();
+
+  assert.equal(
+    carousel.querySelectorAll(":scope > .slick-track img").length,
+    2,
+    "slides were rebuilt without Slick, so they stack over the product details",
+  );
+  runtime.destroy();
+});
+
+test("thumbnail click still moves the slider after another script replaces window.jQuery", () => {
+  const page = fixture();
+  page.dom.window.productObj.images = [
+    { image: { full_size: "https://x/a.png" } },
+    { image: { full_size: "https://x/b.png" } },
+  ];
+  const calls = [];
+  const themeJQuery = (element) => ({
+    hasClass: (name) => element.classList.contains(name),
+    slick: (...args) => {
+      if (typeof args[0] === "object") element.classList.add("slick-initialized");
+      else calls.push(args);
+    },
+  });
+  themeJQuery.fn = { slick: true };
+  page.dom.window.jQuery = themeJQuery;
+  const runtime = initialize(page.root, {
+    global: page.dom.window,
+    controlsRoot: page.dom.window.document,
+    sdkReady: () => Promise.resolve({ products: {} }),
+  });
+
+  const applePayJQuery = () => ({});
+  applePayJQuery.fn = {};
+  page.dom.window.jQuery = applePayJQuery;
+  page.root
+    .querySelectorAll(".thumb-image-a")[1]
+    .dispatchEvent(new page.dom.window.MouseEvent("click", { bubbles: true }));
+
+  assert.deepEqual(calls, [["slickGoTo", 1, true]]);
+  runtime.destroy();
+});

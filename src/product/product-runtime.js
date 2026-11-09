@@ -1,6 +1,10 @@
 import { createActionController } from "./product-actions.js";
 import { createBundleController } from "./product-bundle.js";
-import { renderGallery, destroyGallery } from "./product-gallery.js";
+import {
+  renderGallery,
+  destroyGallery,
+  slickJQuery,
+} from "./product-gallery.js";
 import { createQuantityController } from "./product-quantity.js";
 import { createSelectionController } from "./product-selection.js";
 
@@ -274,8 +278,8 @@ export function initialize(root, config) {
       );
     if (target.matches(".thumb-image-a")) {
       var carousel = root.querySelector("#product-images-slick");
-      var jq = global.jQuery;
-      if (carousel && jq && jq.fn && jq.fn.slick)
+      var jq = carousel && slickJQuery(carousel, root.ownerDocument);
+      if (jq)
         jq(carousel).slick(
           "slickGoTo",
           Number(target.getAttribute("data-index")) || 0,
