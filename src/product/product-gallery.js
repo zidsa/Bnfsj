@@ -10,10 +10,18 @@ function imageUrl(image, size) {
   return image[size] || image.full_size || image.medium || "";
 }
 
+// Pin the first Slick-capable jQuery: other scripts (Vitrin's Apple Pay
+// checkout) may later replace window.jQuery with a copy that has no Slick.
+export function slickJQuery(carousel, doc) {
+  var jq = doc.defaultView?.jQuery;
+  if (!carousel.__bnfsjJQuery && jq?.fn?.slick) carousel.__bnfsjJQuery = jq;
+  return carousel.__bnfsjJQuery;
+}
+
 export function destroyGallery(root) {
   var carousel = root.querySelector("#product-images-slick");
-  var jq = root.ownerDocument.defaultView?.jQuery;
-  if (carousel && jq?.fn?.slick && jq(carousel).hasClass("slick-initialized"))
+  var jq = carousel && slickJQuery(carousel, root.ownerDocument);
+  if (jq && jq(carousel).hasClass("slick-initialized"))
     jq(carousel).slick("unslick");
 }
 
@@ -43,8 +51,8 @@ export function renderGallery(root, value, doc, fallback) {
   var empty = root.querySelector(".product-images-empty");
   var frame = root.querySelector(".product-images-carousel");
   if (!carousel || !thumbs || !frame || !empty) return;
-  var jq = doc.defaultView?.jQuery;
-  if (jq && jq.fn && jq.fn.slick && jq(carousel).hasClass("slick-initialized"))
+  var jq = slickJQuery(carousel, doc);
+  if (jq && jq(carousel).hasClass("slick-initialized"))
     jq(carousel).slick("unslick");
   carousel.replaceChildren();
   thumbs.replaceChildren();
@@ -78,7 +86,7 @@ export function renderGallery(root, value, doc, fallback) {
   frame.classList.toggle("d-none", !hasImages);
   empty.classList.toggle("d-none", hasImages);
   thumbs.classList.toggle("d-none-important", images.length <= 1);
-  if (hasImages && jq && jq.fn && jq.fn.slick) {
+  if (hasImages && jq) {
     var rtl = doc.documentElement.dir !== "ltr";
     var nextArrowClass = rtl
       ? "icon-keyboard_arrow_left"
